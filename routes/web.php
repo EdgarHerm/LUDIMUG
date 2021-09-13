@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Http\Requests\Test;
+Route::post('/form-post', 'StudiesController@radios');
 
 Route::get('/', 'SiteController@index');
 Route::resource('/studies', 'StudiesController');

@@ -7,18 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" />
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('css/bootstrap.css.map') }}" rel="stylesheet" />
     <link href="{{ asset('css/jquery.dataTables.min.css') }}" rel="stylesheet" />
     <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/bootstrap.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/bootstrap.js.map') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/bootstrap.min.js.map') }}" type="text/javascript"></script>
     
     <script src="{{ asset('js/jquery.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/jquery.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/jquery.dataTables.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/init.js') }}" type="text/javascript"></script>
     <script>
         $(document).ready(function() {
             $('#reportTable').DataTable();
@@ -44,6 +40,10 @@
                 <li class="nav-item">
                     <a class="nav-link fw-bolder link-success" aria-current="page"
                         href="{{ URL::to('studies') }}">Estudios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-bolder link-success" aria-current="page"
+                        href="{{ URL::to('studies') }}">Síntomas</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link fw-bolder" href="{{ URL::to('/') }}">Inicio</a>
