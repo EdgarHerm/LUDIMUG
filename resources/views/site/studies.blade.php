@@ -395,7 +395,7 @@
                         <div class="accordion-body">
                             <form class="row g-3">
                                 <div class="col-md-6">
-                                    <label for="exampleDataList" class="form-label">Datalist example</label>
+                                    <label for="exampleDataList" class="form-label">Nombre de la unidad:</label>
                                     <input class="form-control" list="datalistOptions" id="exampleDataList"
                                         placeholder="Buscar...">
                                     <datalist id="datalistOptions">
@@ -406,44 +406,92 @@
                                         <option value="Chicago">
                                     </datalist>
                                 </div>
-                                <div class="col-md-6">
-                                    <label for="inputPassword4" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="inputPassword4">
+                                <div class="col-md-5">
+                                    <label for="inputPassword4" class="form-label">NUE</label>
+                                    <input class="form-control" list="datalistOptions2" id="exampleDataList2"
+                                        placeholder="Buscar...">
+                                    <datalist id="datalistOptions2">
+                                        <option value="789818">
+                                        <option value="266479">
+                                        <option value="312659">
+                                        <option value="998948">
+                                        <option value="498798">
+                                    </datalist>
                                 </div>
-                                <div class="col-12">
-                                    <label for="inputAddress" class="form-label">Address</label>
-                                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                                <div class="col-md-1">
+                                    <button type="submit" class="btn btn-success mt-4"><i
+                                            class="fas fa-search"></i></button>
                                 </div>
-                                <div class="col-12">
-                                    <label for="inputAddress2" class="form-label">Address 2</label>
+                                <div class="col-6">
+                                    <label for="inputAddress" class="form-label">Fecha de notificación en
+                                        plataforma</label>
+                                    <input type="date" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                                </div>
+                                <div class="col-6">
+                                    <label for="inputAddress2" class="form-label">Folio plataforma</label>
                                     <input type="text" class="form-control" id="inputAddress2"
-                                        placeholder="Apartment, studio, or floor">
+                                        placeholder="Introduce el folio">
                                 </div>
-                                <div class="col-md-6">
-                                    <label for="inputCity" class="form-label">City</label>
+                                <div class="col-md-4">
+                                    <label for="inputCity" class="form-label">Apellido Paterno</label>
                                     <input type="text" class="form-control" id="inputCity">
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="inputState" class="form-label">State</label>
-                                    <select id="inputState" class="form-select">
-                                        <option selected>Choose...</option>
-                                        <option>...</option>
-                                    </select>
+                                    <label for="inputState" class="form-label">Apellido Materno</label>
+                                    <input type="text" class="form-control" id="inputCity">
                                 </div>
-                                <div class="col-md-2">
-                                    <label for="inputZip" class="form-label">Zip</label>
+                                <div class="col-md-4">
+                                    <label for="inputZip" class="form-label">Nombre (s)</label>
                                     <input type="text" class="form-control" id="inputZip">
                                 </div>
-                                <div class="col-12">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="gridCheck">
-                                        <label class="form-check-label" for="gridCheck">
-                                            Check me out
-                                        </label>
-                                    </div>
+                                <div class="col-4">
+                                    <label for="inputAddress" class="form-label">Fecha de nacimiento</label>
+                                    <input type="date" class="form-control" id="inputAddress" placeholder="1234 Main St">
                                 </div>
-                                <div class="col-12">
-                                    <button type="submit" class="btn btn-primary">Sign in</button>
+                                <div class="col-3">
+                                    <label for="inputAddress" class="form-label">Sexo</label>
+                                    <select class="form-control" aria-label="Default select example">
+                                        <option selected>Seleccionar...</option>
+                                        <option value="Hombre">Hombre</option>
+                                        <option value="Mujer">Mujer</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <label for="inputState" class="form-label">CURP</label>
+                                    <input type="text" class="form-control" id="inputCity">
+                                </div>
+                                <div class="col-3">
+                                    <label for="inputAddress" class="form-label">¿Está embarazada?</label>
+                                    <select class="form-control" aria-label="Default select example">
+                                        <option selected>Seleccionar...</option>
+                                        <option value="Sí">Sí</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="inputState" class="form-label">Meses de embarazo</label>
+                                    <input type="number" min="0" max="9" class="form-control" id="inputCity">
+                                </div>
+                                <div class="col-3">
+                                    <label for="inputAddress" class="form-label">¿Se encuentra en estado de
+                                        puerperio?</label>
+                                    <select class="form-control" aria-label="Default select example">
+                                        <option selected>Seleccionar...</option>
+                                        <option value="Sí">Sí</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="inputState" class="form-label">Días de puerperio</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="inputCity">
+                                </div>
+                                <div class="col-3">
+                                    <label for="inputAddress" class="form-label">Nacionalidad</label>
+                                    <select class="form-control" aria-label="Default select example">
+                                        <option selected>Seleccionar...</option>
+                                        <option value="Mexicana">Mexicana</option>
+                                        <option value="Extranjera">Extranjera</option>
+                                    </select>
                                 </div>
                             </form>
                         </div>
