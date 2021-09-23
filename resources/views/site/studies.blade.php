@@ -422,12 +422,12 @@
                                     <button type="submit" class="btn btn-success mt-4"><i
                                             class="fas fa-search"></i></button>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-md-6">
                                     <label for="inputAddress" class="form-label">Fecha de notificación en
                                         plataforma</label>
                                     <input type="date" class="form-control" id="inputAddress" placeholder="1234 Main St">
                                 </div>
-                                <div class="col-6">
+                                <div class="col-md-6">
                                     <label for="inputAddress2" class="form-label">Folio plataforma</label>
                                     <input type="text" class="form-control" id="inputAddress2"
                                         placeholder="Introduce el folio">
@@ -444,11 +444,11 @@
                                     <label for="inputZip" class="form-label">Nombre (s)</label>
                                     <input type="text" class="form-control" id="inputZip">
                                 </div>
-                                <div class="col-4">
+                                <div class="col-md-4">
                                     <label for="inputAddress" class="form-label">Fecha de nacimiento</label>
                                     <input type="date" class="form-control" id="inputAddress" placeholder="1234 Main St">
                                 </div>
-                                <div class="col-3">
+                                <div class="col-md-3">
                                     <label for="inputAddress" class="form-label">Sexo</label>
                                     <select class="form-control" aria-label="Default select example">
                                         <option selected>Seleccionar...</option>
@@ -460,7 +460,7 @@
                                     <label for="inputState" class="form-label">CURP</label>
                                     <input type="text" class="form-control" id="inputCity">
                                 </div>
-                                <div class="col-3">
+                                <div class="col-md-3">
                                     <label for="inputAddress" class="form-label">¿Está embarazada?</label>
                                     <select class="form-control" aria-label="Default select example">
                                         <option selected>Seleccionar...</option>
@@ -472,7 +472,7 @@
                                     <label for="inputState" class="form-label">Meses de embarazo</label>
                                     <input type="number" min="0" max="9" class="form-control" id="inputCity">
                                 </div>
-                                <div class="col-3">
+                                <div class="col-md-3">
                                     <label for="inputAddress" class="form-label">¿Se encuentra en estado de
                                         puerperio?</label>
                                     <select class="form-control" aria-label="Default select example">
@@ -485,13 +485,36 @@
                                     <label for="inputState" class="form-label">Días de puerperio</label>
                                     <input type="number" min="0" max="100" class="form-control" id="inputCity">
                                 </div>
-                                <div class="col-3">
+                                <div class="col-md-3">
                                     <label for="inputAddress" class="form-label">Nacionalidad</label>
                                     <select class="form-control" aria-label="Default select example">
                                         <option selected>Seleccionar...</option>
                                         <option value="Mexicana">Mexicana</option>
                                         <option value="Extranjera">Extranjera</option>
                                     </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="inputAddress" class="form-label">¿Es migrante?</label>
+                                    <br>
+                                    <input type="radio" class="form-control btn-check" name="skills[c]" id="warning-outlined"
+                                        autocomplete="off">
+                                    <label class="btn btn-outline-warning" for="warning-outlined">Sí</label>
+
+                                    <input value="" type="radio" class="form-control btn-check" name="skills[c]"
+                                        id="dark-outlined" autocomplete="off">
+                                    <label class="btn btn-outline-dark" for="dark-outlined">No</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="inputState" class="form-label">País de nacionalidad</label>
+                                    <input type="text" min="0" max="100" class="form-control" id="inputCity">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="inputState" class="form-label">País de origen</label>
+                                    <input type="text" min="0" max="100" class="form-control" id="inputCity">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="inputState" class="form-label">Países en tránsito en los últimos 3 meses</label>
+                                    <input type="text" min="0" max="100" class="form-control" id="inputCity">
                                 </div>
                             </form>
                         </div>
