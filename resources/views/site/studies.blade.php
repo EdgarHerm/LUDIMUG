@@ -516,6 +516,40 @@
                                     <label for="inputState" class="form-label">Países en tránsito en los últimos 3 meses</label>
                                     <input type="text" min="0" max="100" class="form-control" id="inputCity">
                                 </div>
+                                <div class="col-md-3">
+                                    <label for="inputState" class="form-label">Fecha de ingreso a México</label>
+                                    <input type="date" min="0" max="100" class="form-control" id="inputCity">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="inputState" class="form-label">País de nacimiento</label>
+                                    <input type="text" min="0" max="100" class="form-control" id="inputCity">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="inputState" class="form-label">Entidad federativa de nacimiento</label>
+                                    <input type="text" min="0" max="100" class="form-control" id="inputCity">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="inputState" class="form-label">Código Postal</label>
+                                    <input type="text" min="0" onkeyup="getData()" max="100" class="form-control" id="zipcode">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="inputState" class="form-label">Entidad de residencia</label>
+                                    <input type="text" min="0" max="100" class="form-control" id="entityResidence">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="inputState" class="form-label">Municipio de residencia</label>
+                                    <input type="text" min="0" max="100" class="form-control" id="inputCity">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="inputState" class="form-label">Localidad</label>
+                                    <input type="text" min="0" max="100" class="form-control" id="inputCity">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="inputAddress" class="form-label">Colonia</label>
+                                    <select class="form-control" id="places" aria-label="Default select example">
+                                        <option selected>Seleccionar...</option>
+                                    </select>
+                                </div>
                             </form>
                         </div>
                     </div>
