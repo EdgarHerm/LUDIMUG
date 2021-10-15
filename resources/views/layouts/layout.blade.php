@@ -67,8 +67,8 @@
         "></div>
 
 <body>
-    <div class="container-fluid">
-        <div class="container m-3">
+    <div class="container">
+        <div class="container-fluid m-3">
             @yield('content')
         </div>
     </div>

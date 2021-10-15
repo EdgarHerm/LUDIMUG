@@ -406,21 +406,24 @@
                                         <option value="Chicago">
                                     </datalist>
                                 </div>
-                                <div class="col-md-5">
-                                    <label for="inputPassword4" class="form-label">NUE</label>
-                                    <input class="form-control" list="datalistOptions2" id="exampleDataList2"
-                                        placeholder="Buscar...">
-                                    <datalist id="datalistOptions2">
-                                        <option value="789818">
-                                        <option value="266479">
-                                        <option value="312659">
-                                        <option value="998948">
-                                        <option value="498798">
-                                    </datalist>
-                                </div>
-                                <div class="col-md-1">
-                                    <button type="submit" class="btn btn-success mt-4"><i
-                                            class="fas fa-search"></i></button>
+                                <div class="col-md-6">
+                                    <label for="exampleDataList" class="form-label">NUE (A):</label>
+
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" placeholder="Buscar..."
+                                            aria-label="Recipient's username" list="datalistOptions2"
+                                            aria-describedby="button-addon2">
+                                        <button class="btn btn-outline-success" type="button" id="button-addon2"><i
+                                                class="fas fa-search"></i></button>
+
+                                        <datalist id="datalistOptions2">
+                                            <option value="789818">
+                                            <option value="266479">
+                                            <option value="312659">
+                                            <option value="998948">
+                                            <option value="498798">
+                                        </datalist>
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="inputAddress" class="form-label">Fecha de notificación en
@@ -496,8 +499,8 @@
                                 <div class="col-md-2">
                                     <label for="inputAddress" class="form-label">¿Es migrante?</label>
                                     <br>
-                                    <input type="radio" class="form-control btn-check" name="skills[c]" id="warning-outlined"
-                                        autocomplete="off">
+                                    <input type="radio" class="form-control btn-check" name="skills[c]"
+                                        id="warning-outlined" autocomplete="off">
                                     <label class="btn btn-outline-warning" for="warning-outlined">Sí</label>
 
                                     <input value="" type="radio" class="form-control btn-check" name="skills[c]"
@@ -513,7 +516,8 @@
                                     <input type="text" min="0" max="100" class="form-control" id="inputCity">
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="inputState" class="form-label">Países en tránsito en los últimos 3 meses</label>
+                                    <label for="inputState" class="form-label">Países en tránsito en los últimos 3
+                                        meses</label>
                                     <input type="text" min="0" max="100" class="form-control" id="inputCity">
                                 </div>
                                 <div class="col-md-3">
@@ -530,7 +534,8 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label for="inputState" class="form-label">Código Postal</label>
-                                    <input type="text" min="0" onkeyup="getData()" max="100" class="form-control" id="zipcode">
+                                    <input type="text" min="0" onkeyup="getData()" max="100" class="form-control"
+                                        id="zipcode">
                                 </div>
                                 <div class="col-md-3">
                                     <label for="inputState" class="form-label">Entidad de residencia</label>
