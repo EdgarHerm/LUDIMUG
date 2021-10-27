@@ -57,10 +57,10 @@
                             2
                         </td>
                         <td>
-                            Juan Ignacio Peréz Ramírez
+                            Edgar Eduardo Rodríguez
                         </td>
                         <td>
-                            Villa Olímpica, León GTO
+                            Los olivos, León GTO
                         </td>
                         <td class="bg-danger text-white">
                             Positivo
@@ -74,13 +74,13 @@
                             3
                         </td>
                         <td>
-                            Juan Ignacio Peréz Ramírez
+                            José Juan Vallejo Nuñez
                         </td>
                         <td>
-                            Villa Olímpica, León GTO
+                            Valle de señora, León GTO
                         </td>
-                        <td class="bg-danger text-white">
-                            Positivo
+                        <td class="bg-success text-white">
+                            Negativo
                         </td>
                         <td>
 
@@ -91,285 +91,13 @@
                             4
                         </td>
                         <td>
-                            Juan Ignacio Peréz Ramírez
+                            José Esteban Landeros Aranda
                         </td>
                         <td>
-                            Villa Olímpica, León GTO
-                        </td>
-                        <td class="bg-danger text-white">
-                            Positivo
-                        </td>
-                        <td>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            5
-                        </td>
-                        <td>
-                            Juan Ignacio Peréz Ramírez
-                        </td>
-                        <td>
-                            Villa Olímpica, León GTO
+                            La roncha, León GTO
                         </td>
                         <td class="bg-danger text-white">
                             Positivo
-                        </td>
-                        <td>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            6
-                        </td>
-                        <td>
-                            Juan Ignacio Peréz Ramírez
-                        </td>
-                        <td>
-                            Villa Olímpica, León GTO
-                        </td>
-                        <td class="bg-danger text-white">
-                            Positivo
-                        </td>
-                        <td>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            7
-                        </td>
-                        <td>
-                            Juan Ignacio Peréz Ramírez
-                        </td>
-                        <td>
-                            Villa Olímpica, León GTO
-                        </td>
-                        <td class="bg-danger text-white">
-                            Positivo
-                        </td>
-                        <td>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            8
-                        </td>
-                        <td>
-                            Juan Ignacio Peréz Ramírez
-                        </td>
-                        <td>
-                            Villa Olímpica, León GTO
-                        </td>
-                        <td class="bg-danger text-white">
-                            Positivo
-                        </td>
-                        <td>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            9
-                        </td>
-                        <td>
-                            Juan Ignacio Peréz Ramírez
-                        </td>
-                        <td>
-                            Villa Olímpica, León GTO
-                        </td>
-                        <td class="bg-danger text-white">
-                            Positivo
-                        </td>
-                        <td>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            10
-                        </td>
-                        <td>
-                            Juan Ignacio Peréz Ramírez
-                        </td>
-                        <td>
-                            Villa Olímpica, León GTO
-                        </td>
-                        <td class="bg-danger text-white">
-                            Positivo
-                        </td>
-                        <td>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            11
-                        </td>
-                        <td>
-                            Juan Ignacio Peréz Ramírez
-                        </td>
-                        <td>
-                            Villa Olímpica, León GTO
-                        </td>
-                        <td class="bg-danger text-white">
-                            Positivo
-                        </td>
-                        <td>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            12
-                        </td>
-                        <td>
-                            Juan Ignacio Peréz Ramírez
-                        </td>
-                        <td>
-                            Villa Olímpica, León GTO
-                        </td>
-                        <td class="bg-success text-white">
-                            Negativo
-                        </td>
-                        <td>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            13
-                        </td>
-                        <td>
-                            Juan Ignacio Peréz Ramírez
-                        </td>
-                        <td>
-                            Villa Olímpica, León GTO
-                        </td>
-                        <td class="bg-danger text-white">
-                            Positivo
-                        </td>
-                        <td>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            14
-                        </td>
-                        <td>
-                            Juan Ignacio Peréz Ramírez
-                        </td>
-                        <td>
-                            Villa Olímpica, León GTO
-                        </td>
-                        <td class="bg-danger text-white">
-                            Positivo
-                        </td>
-                        <td>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            15
-                        </td>
-                        <td>
-                            Juan Ignacio Peréz Ramírez
-                        </td>
-                        <td>
-                            Villa Olímpica, León GTO
-                        </td>
-                        <td class="bg-danger text-white">
-                            Positivo
-                        </td>
-                        <td>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            16
-                        </td>
-                        <td>
-                            Juan Ignacio Peréz Ramírez
-                        </td>
-                        <td>
-                            Villa Olímpica, León GTO
-                        </td>
-                        <td class="bg-danger text-white">
-                            Positivo
-                        </td>
-                        <td>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            17
-                        </td>
-                        <td>
-                            Juan Ignacio Peréz Ramírez
-                        </td>
-                        <td>
-                            Villa Olímpica, León GTO
-                        </td>
-                        <td class="bg-danger text-white">
-                            Positivo
-                        </td>
-                        <td>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            18
-                        </td>
-                        <td>
-                            Juan Ignacio Peréz Ramírez
-                        </td>
-                        <td>
-                            Villa Olímpica, León GTO
-                        </td>
-                        <td class="bg-danger text-white">
-                            Positivo
-                        </td>
-                        <td>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            19
-                        </td>
-                        <td>
-                            Juan Ignacio Peréz Ramírez
-                        </td>
-                        <td>
-                            Villa Olímpica, León GTO
-                        </td>
-                        <td class="bg-danger text-white">
-                            Positivo
-                        </td>
-                        <td>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            20
-                        </td>
-                        <td>
-                            Juan Ignacio Peréz Ramírez
-                        </td>
-                        <td>
-                            Villa Olímpica, León GTO
-                        </td>
-                        <td class="bg-success text-white">
-                            Negativo
                         </td>
                         <td>
 
@@ -652,15 +380,15 @@
                 <input type="radio" name="skills[b]" value="laravel">Laravel</br>
                 <input type="submit">
             </form>
-            <input type="radio" class="btn-check" name="skills[c]" id="success-outlined" autocomplete="off">
+            {{-- <input type="radio" class="btn-check" name="skills[c]" id="success-outlined" autocomplete="off">
             <label class="btn btn-outline-danger" for="success-outlined">Sí</label>
 
             <input value="" type="radio" class="btn-check" name="skills[c]" id="danger-outlined" autocomplete="off">
-            <label class="btn btn-outline-success" for="danger-outlined">No</label>
+            <label class="btn btn-outline-success" for="danger-outlined">No</label> --}}
 
 
         </div>
-        <button class="btn btn-warning" onclick="test()">Confirmar</button>
+        {{-- <button class="btn btn-warning" onclick="test()">Confirmar</button> --}}
     </div>
 
 @endsection
