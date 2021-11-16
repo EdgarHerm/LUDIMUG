@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /vendor/
 node_modules/
 npm-debug.log
@@ -17,19 +16,15 @@ public_html/storage
 public_html/hot
 
 storage/*.key
-.env
 Homestead.yaml
 Homestead.json
 /.vagrant
 .phpunit.result.cache
-=======
 /node_modules
 /public/hot
 /public/storage
 /storage/*.key
 /vendor
-.env
-.env.backup
 .phpunit.result.cache
 docker-compose.override.yml
 Homestead.json
@@ -38,4 +33,3 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
->>>>>>> 4806dbc2201b1511f69ab834accd2afd2d791be0
