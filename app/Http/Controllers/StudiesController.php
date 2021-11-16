@@ -13,7 +13,7 @@ class StudiesController extends Controller
      */
     public function index()
     {
-        return view('site.studies');
+        return view('site.sars');
         //
     }
 
@@ -35,9 +35,15 @@ class StudiesController extends Controller
      */
     public function store(Request $request)
     {
+        
         //
     }
 
+    public function radios(Request $request){
+        foreach($request->skills->all() as $row){
+            echo var_dump($row);
+        }
+    }
     /**
      * Display the specified resource.
      *

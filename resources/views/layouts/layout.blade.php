@@ -46,6 +46,10 @@
                         href="{{ URL::to('studies') }}">Estudios</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link fw-bolder link-success" aria-current="page"
+                        href="{{ URL::to('studies') }}">Síntomas</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link fw-bolder" href="{{ URL::to('/') }}">Inicio</a>
                 </li>
             </ul>
@@ -63,8 +67,8 @@
         "></div>
 
 <body>
-    <div class="container-fluid">
-        <div class="container m-3">
+    <div class="container">
+        <div class="container-fluid m-3">
             @yield('content')
         </div>
     </div>
