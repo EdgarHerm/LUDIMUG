@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://ludim-ug.herokuapp.com/'),
+    'url' => 'https://ludim-ug.herokuapp.com/',
 
     'asset_url' => env('ASSET_URL', null),
 
