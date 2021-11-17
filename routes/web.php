@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 use App\Http\Requests\Test;
+
+if (env('APP_ENV') === 'production') {
+    URL::forceSchema('https');
+}
+
 Route::post('/form-post', 'StudiesController@radios');
 
 Route::get('/', 'SiteController@index');
