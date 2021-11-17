@@ -5,20 +5,20 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet" />
-    <link href="{{ secure_asset('css/bootstrap.css') }}" rel="stylesheet" />
-    <link href="{{ secure_asset('css/bootstrap.min.css') }}" rel="stylesheet" />
-    <link href="{{ secure_asset('css/bootstrap.css.map') }}" rel="stylesheet" />
-    <link href="{{ secure_asset('css/jquery.dataTables.min.css') }}" rel="stylesheet" />
-    <script src="{{ secure_asset('js/app.js') }}" type="text/javascript"></script>
-    <script src="{{ secure_asset('js/bootstrap.js') }}" type="text/javascript"></script>
-    <script src="{{ secure_asset('js/bootstrap.js.map') }}" type="text/javascript"></script>
-    <script src="{{ secure_asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
-    <script src="{{ secure_asset('js/bootstrap.min.js.map') }}" type="text/javascript"></script>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/bootstrap.css.map') }}" rel="stylesheet" />
+    <link href="{{ asset('css/jquery.dataTables.min.css') }}" rel="stylesheet" />
+    <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/bootstrap.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/bootstrap.js.map') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/bootstrap.min.js.map') }}" type="text/javascript"></script>
     
-    <script src="{{ secure_asset('js/jquery.js') }}" type="text/javascript"></script>
-    <script src="{{ secure_asset('js/jquery.min.js') }}" type="text/javascript"></script>
-    <script src="{{ secure_asset('js/jquery.dataTables.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/jquery.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/jquery.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/jquery.dataTables.js') }}" type="text/javascript"></script>
     <script>
         $(document).ready(function() {
             $('#reportTable').DataTable();
@@ -29,9 +29,9 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
-            <img src="{{ secure_asset('img/escudoug.png') }}" alt="" width="90px" class="d-inline-block align-text-top" />
+            <img src="{{ asset('img/escudoug.png') }}" alt="" width="90px" class="d-inline-block align-text-top" />
             |
-            <img src="{{ secure_asset('img/ludimug.png') }}" alt="" width="80px" height="33px"
+            <img src="{{ asset('img/ludimug.png') }}" alt="" width="80px" height="33px"
                 class="d-inline-block align-text-top" />
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"

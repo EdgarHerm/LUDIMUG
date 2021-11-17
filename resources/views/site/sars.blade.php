@@ -187,7 +187,7 @@
                                         <option>Irapuato-Salamanca</option>
                                     </select>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <label for="inputAddress2" class="form-label">Sede</label>
                                     <select class="form-control">
                                         <option selected disabled>Seleccionar...</option>
@@ -232,7 +232,7 @@
                                         <option value="Tierra Blanca">Tierra Blanca</option>
                                     </select>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <label for="inputAddress2" class="form-label">División</label>
                                     <select class="form-control">
                                         <option selected disabled>Seleccionar...</option>
@@ -257,7 +257,7 @@
                                         <option value="División de Ingenierías">División de Ingenierías</option>
                                     </select>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <label for="inputAddress2" class="form-label">Departamento</label>
                                     <select class="form-control">
                                         <option selected disabled>Seleccionar...</option>
