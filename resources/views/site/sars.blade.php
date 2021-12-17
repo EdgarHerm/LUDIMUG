@@ -15,7 +15,7 @@
     <div class="tab-content" id="pills-tabContent">
         <div class="tab-pane fade show active justify-content-center" id="pills-home" role="tabpanel"
             aria-labelledby="pills-home-tab">
-            <table class="table table-striped table-hover" id="reportTable">
+            <table class="table table-responsive table-hover" id="reportTable">
                 <thead>
                     <tr>
                         <th>

@@ -13,7 +13,8 @@ class StudiesController extends Controller
      */
     public function index()
     {
-        return view('site.sars');
+        $arreglo = ["Lunes"];
+        return view('site.studies');
         //
     }
 
