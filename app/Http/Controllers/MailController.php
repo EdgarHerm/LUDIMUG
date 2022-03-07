@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Auth;
-use Http\Models\Persona;
-
-class SiteController extends Controller
+use Mail;
+class MailController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +13,15 @@ class SiteController extends Controller
      */
     public function index()
     {
-        return view('site.index');
-        
-        //
+        $data = array('name'=>"Hola Mundo");
+        $template_path = 'site.email_template';
+
+        Mail::send(['html'=> $template_path ], $data, function($message) {
+            $message->to('cande99later@gmail.com', 'Receiver Name')->subject('Titulo del correo');
+            $message->from('ed.hermosillo@ugto.mx','Hola Mundo');
+        });
+
+        return "El correo ha sido enviado";
     }
 
     /**

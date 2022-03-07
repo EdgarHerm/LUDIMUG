@@ -11,6 +11,7 @@
 
     
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link rel="icon" href="{{asset('img/ludimug_solo.png')}}">
 
     <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/bootstrap.js') }}" type="text/javascript"></script>
@@ -29,9 +30,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
-            <img src="{{ asset('img/escudoug.png') }}" alt="" width="90px" class="d-inline-block align-text-top" />
-            |
-            <img src="{{ asset('img/ludimug.png') }}" alt="" width="80px" height="33px"
+            <img src="{{ asset('img/ludimug.png') }}" alt="" width="80px" height="43px"
                 class="d-inline-block align-text-top" />
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -41,6 +40,9 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarText">
             <ul class="nav navbar-nav justify-content-end">
+                @guest
+                
+                @else
                 <li class="nav-item">
                     <a class="nav-link fw-bolder link-success" aria-current="page"
                         href="{{ URL::to('studies') }}">Estudios</a>
@@ -52,6 +54,10 @@
                 <li class="nav-item">
                     <a class="nav-link fw-bolder" href="{{ URL::to('/') }}">Inicio</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-bolder" href="{{ URL::to('logout') }}">Salir</a>
+                </li>
+                @endguest
             </ul>
         </div>
     </div>

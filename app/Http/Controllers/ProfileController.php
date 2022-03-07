@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Auth;
-use Http\Models\Persona;
 
-class SiteController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +13,7 @@ class SiteController extends Controller
      */
     public function index()
     {
-        return view('site.index');
-        
+        return view('site.profile');
         //
     }
 

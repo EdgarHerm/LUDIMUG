@@ -7,9 +7,9 @@
             <div class="card">
                 <img src="{{ asset('img/UG.jpg') }}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">Iniciar Sesión</h5>
+                    <h5 class="card-title">Registro</h5>
                     {{ Html::ul($errors->all()) }}
-                    {{ Form::open(['url' => '/login']) }}
+                    {{ Form::open(['url' => '/register']) }}
                     <!-- Email input -->
                     <div class="form-outline mb-4">
                         {{ Form::label('email', 'Correo electrónico', ['class' => 'form-label']) }}
@@ -23,10 +23,10 @@
                         
                     </div>
                     <div class="mb-3">
-                    No tienes una cuenta? <a href="{{ URL::to('/register') }}">Registrate</a>
+                    Ya tienes una cuenta? <a href="{{ URL::to('/login') }}">Inicia sesión</a>
                     </div>
                     <div class="d-grid gap-2">
-                    {{ Form::submit('Iniciar Sesión', ['class' => 'btn btn-outline-success']) }}
+                    {{ Form::submit('Registrarse', ['class' => 'btn btn-outline-success']) }}
                     </div>
                     {{ Form::close() }}
                 </div>
