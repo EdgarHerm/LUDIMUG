@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Mail;
 
 class RegisterController extends Controller
@@ -80,12 +81,13 @@ class RegisterController extends Controller
                 ["password"=>"Ocurrio un error al registrar el usuario".$th]);
         }
         
-        $data = array('name'=>"Email attachment LUDIMUG");
+        $data = Str::random(7);
+        $temporal_token = Str::random(60);
             $template_path = 'site.email_template';
             $correo = $request->email;
-            Mail::send(['html'=> $template_path ], $data, function($message) use ($correo) {
-                $message->to($correo, 'Receiver Name')->subject('Sistema LUDIMUG');
-                $message->from('ed.hermosillo@ugto.mx','Bienvenido');
+            Mail::send('site.email_template', ['data'=>$data], function($message) use ($correo) {
+                $message->to($correo, 'Receiver Name')->subject('Confirmar correo electrónico');
+                $message->from('ed.hermosillo@ugto.mx','Confirmacion de Registro');
             });
         return Redirect::to('/');
         //
