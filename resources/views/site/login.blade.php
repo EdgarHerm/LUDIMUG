@@ -3,33 +3,53 @@
 @section('content')
     <div class="row">
 
+        @if (session()->has('error'))
+        @endif
         <div class="col-md-6">
+            
+            
             <div class="card">
+                
                 <img src="{{ asset('img/UG.jpg') }}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">Iniciar Sesión</h5>
-                    {{ Html::ul($errors->all()) }}
+                    <h3 class="card-title">Iniciar Sesión</h3>
+
                     {{ Form::open(['url' => '/login']) }}
                     <!-- Email input -->
+                    <div class="position-relative">
+                        <div class="toast bg-danger text-white fade position-absolute top-50 start-50 translate-middle" id="myToast">
+                            <div class="toast-header">
+                                <strong class="me-auto"><i class="bi-gift-fill"></i>Inicio de Sesión</strong>
+                                <small>Error</small>
+                                <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+                            </div>
+                            <div class="toast-body">
+                                <a>
+                                    {{ session()->get('error') }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-outline mb-4">
                         {{ Form::label('email', 'Correo electrónico', ['class' => 'form-label']) }}
                         {{ Form::email('email', Request::old('email'), ['class' => 'form-control', 'required' => true]) }}
-                        
+
                     </div>
                     <!-- Password input -->
                     <div class="form-outline mb-4">
                         {{ Form::label('password', 'Contraseña', ['class' => 'form-label']) }}
                         {{ Form::password('password', ['class' => 'form-control full-width', 'required' => true]) }}
-                        
+
                     </div>
                     <div class="mb-3">
-                    No tienes una cuenta? <a href="{{ URL::to('/register') }}">Registrate</a>
+                        No tienes una cuenta? <a href="{{ URL::to('/register') }}">Registrate</a>
                     </div>
                     <div class="d-grid gap-2">
-                    {{ Form::submit('Iniciar Sesión', ['class' => 'btn btn-outline-success']) }}
+                        {{ Form::submit('Iniciar Sesión', ['class' => 'btn btn-outline-success']) }}
                     </div>
                     {{ Form::close() }}
                 </div>
+                
             </div>
         </div>
         <div class="col-md-6">

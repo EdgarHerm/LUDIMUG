@@ -7,7 +7,7 @@
             <div class="card">
                 <img src="{{ asset('img/UG.jpg') }}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">Registro</h5>
+                    <h3 class="card-title">Registro</h3>
                     {{ Html::ul($errors->all()) }}
                     {{ Form::open(['url' => '/register']) }}
                     <!-- Email input -->

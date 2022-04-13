@@ -17,7 +17,7 @@
                                 </strong></span>
                                 <br>
                             <a type="button" class="btn btn-outline-success btn-lg"
-                                href="{{ URL::to('home') }}">Regresar</a>
+                                href="{{ URL::to('/') }}">Regresar</a>
                         </div>
                     </div>
 

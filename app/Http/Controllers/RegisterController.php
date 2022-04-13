@@ -47,7 +47,7 @@ class RegisterController extends Controller
             'email' => 'required',
             'password' => 'required',
         ]);
-
+        $data = Str::random(7);
         //validacion del si el nombre de ususario ya existe
         $exists = User::where([
             'email' => $request->email,
@@ -65,8 +65,9 @@ class RegisterController extends Controller
             $User->email = $request->email;
             $User->password = bcrypt($request->password);
             $User->estatus = 1;
-            $User->remember_token = "NA";
-            $User->email_verified_at = "2022-01-01 00:00:00";
+            $User->remember_token = "";
+            $User->token = $data;
+            $User->email_verified_at = null;
             $User->created_at = "2022-01-01 00:00:00";
             $User->updated_at = "2022-01-01 00:00:00";
             $User->rol =  1;
@@ -81,7 +82,7 @@ class RegisterController extends Controller
                 ["password"=>"Ocurrio un error al registrar el usuario".$th]);
         }
         
-        $data = Str::random(7);
+        
         $temporal_token = Str::random(60);
             $template_path = 'site.email_template';
             $correo = $request->email;

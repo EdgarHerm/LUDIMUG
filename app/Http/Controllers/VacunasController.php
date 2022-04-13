@@ -4,11 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Auth;
-use Redirect;
-use Http\Models\Persona;
+use App\Models\Vacunas;
 
-class SiteController extends Controller
+class VacunasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,13 +15,7 @@ class SiteController extends Controller
      */
     public function index()
     {
-        $sql = 'SELECT * FROM persona INNER JOIN users ON persona.idUsuario = users.id '.'WHERE idPersona =' . Auth::user()->id.' AND users.rol = 1';
-        $user_profile = Db::select($sql);
-        if ($user_profile or Auth::user()->rol == 0) {
-            return view('site.index');
-        } else {
-            return Redirect::to('/profile');
-        }
+        //
     }
 
     /**
@@ -44,8 +36,21 @@ class SiteController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            //direccion
+            'nombresin' => 'required',
+        ]);
+
+        DB::beginTransaction();
+        $registerSintoma = new Vacunas();
+        $registerSintoma->nombre = $request->nombresin;
+        $registerSintoma->updated_at = date('Y-m-d H:i:s');
+        $registerSintoma->save();
+        DB::commit();
+        return Redirect()->back()->with('success', 'Vacuna registrada correctamente');
         //
     }
+
 
     /**
      * Display the specified resource.

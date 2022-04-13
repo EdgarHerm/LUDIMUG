@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Auth;
-use Redirect;
-use Http\Models\Persona;
 
-class SiteController extends Controller
+use Redirect;
+use Auth;
+use Illuminate\Support\Facades\DB;
+use Mail;
+
+class SarsUserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,13 +18,23 @@ class SiteController extends Controller
      */
     public function index()
     {
-        $sql = 'SELECT * FROM persona INNER JOIN users ON persona.idUsuario = users.id '.'WHERE idPersona =' . Auth::user()->id.' AND users.rol = 1';
-        $user_profile = Db::select($sql);
-        if ($user_profile or Auth::user()->rol == 0) {
-            return view('site.index');
-        } else {
-            return Redirect::to('/profile');
+        $psql =
+            'SELECT idPersona FROM persona WHERE idUsuario = ' .
+            Auth::user()->id;
+        $idPersona = DB::select($psql);
+
+        if ($idPersona) {
+            $reportescons =
+                'SELECT * FROM reporte INNER JOIN persona ON persona.idPersona = reporte.idPersona INNER JOIN direccion ON persona.idDireccion = direccion.idDireccion WHERE persona.idPersona = ' .
+                $idPersona[0]->idPersona;
+            $reportes = Db::select($reportescons);
+            return view('site.sars_user', compact('reportes'));
+        }else{
+            $reportes = [];
+            return Redirect::to('/');
         }
+        
+        //
     }
 
     /**

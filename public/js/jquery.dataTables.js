@@ -11591,7 +11591,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfo": "Página _START_ de _END_ de _TOTAL_ resultados",
+			"sInfo": "Página _START_ - _END_ de _TOTAL_ resultados",
 	
 	
 			/**
@@ -11612,7 +11612,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfoEmpty": "Página 0 de 0 de 0 resultados",
+			"sInfoEmpty": "Página 0 - 0 de 0 resultados",
 	
 	
 			/**
@@ -11843,7 +11843,7 @@
 			 *  @dtopt Language
 			 *  @name DataTable.defaults.language.searchPlaceholder
 			 */
-			"sSearchPlaceholder": "",
+			"sSearchPlaceholder": "Fecha, resultado, etc...",
 	
 	
 			/**

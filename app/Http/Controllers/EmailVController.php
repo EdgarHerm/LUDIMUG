@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Auth;
-use Redirect;
-use Http\Models\Persona;
+use DateTime;
+use DateTimeZone;
+use App\Models\User;
 
-class SiteController extends Controller
+class EmailVController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,13 +16,8 @@ class SiteController extends Controller
      */
     public function index()
     {
-        $sql = 'SELECT * FROM persona INNER JOIN users ON persona.idUsuario = users.id '.'WHERE idPersona =' . Auth::user()->id.' AND users.rol = 1';
-        $user_profile = Db::select($sql);
-        if ($user_profile or Auth::user()->rol == 0) {
-            return view('site.index');
-        } else {
-            return Redirect::to('/profile');
-        }
+        return view('site.email_validation');
+        //
     }
 
     /**
@@ -36,14 +30,29 @@ class SiteController extends Controller
         //
     }
 
+    public function token_validacion(Request $request){
+        
+    }
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request){
+        $date = new DateTime("now", new DateTimeZone('America/Mexico_City') );
+        $token = $request->input('token');
+        $usuario =  User::where('token', $token)->first();
+        if($usuario){
+            $usuario->token = null;
+            $usuario->email_verified_at = $date->format('Y-m-d H:i:s');;
+            $usuario->save();
+            return redirect('/')->with('success', 'Se ha validado correctamente su cuenta');
+        }else{
+            return back()->withErrors(
+                ["token"=>"El token no es válido"]);
+        }
         //
     }
 

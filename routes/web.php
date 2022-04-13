@@ -17,9 +17,18 @@ use App\Http\Requests\Test;
 
 Route::group(['middleware'=>['auth']], function(){
     Route::post('/form-post', 'StudiesController@radios');
+    Route::resource('/email_validation', 'EmailVController');
     Route::resource('/profile', 'ProfileController');
+  
     Route::get('/', 'SiteController@index')->name('home');
     Route::resource('/studies', 'StudiesController');
+    Route::resource('/vacunas', 'VacunasController');
+    Route::resource('/reports_admin', 'AdminController');
+    Route::resource('/evolucion', 'EvolucionController');
+    Route::resource('/sars_user', 'SarsUserController');
+   
+    Route::resource('/download', 'ExcelController');
+
 });
 
 Route::fallback(function () {

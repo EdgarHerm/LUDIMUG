@@ -19,6 +19,7 @@ class LoginController extends Controller
      */
     public function index()
     {
+        //echo bcrypt('ludimugadmin2022');
         return view('site.login');
         //
     }
@@ -32,7 +33,7 @@ class LoginController extends Controller
         
         // Ejecutar validaciones de la petición
         $validateData = $request->validate([
-            'password' => 'required|min:5|max:10',
+            'password' => 'required|min:5|max:20',
             'email' => 'required|email'
         ]);
 
@@ -40,25 +41,31 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             // echo var_dump(Auth::user());
-            if(Auth::user()->estatus=='1'){
-                $user = User::find(1);
+            if(Auth::user()->estatus=='1' && Auth::user()->rol=='0'){
+                return Redirect::to('/');
+            
+            }
+
+            if(Auth::user()->estatus=='1' && Auth::user()->rol=='1'){
+                $sqltoken = 'SELECT token FROM users WHERE id ='.Auth::user()->id;
+                $token = DB::select($sqltoken);
                 $sql = 'SELECT * FROM persona WHERE idPersona ='.Auth::user()->id;
                 $user_profile = Db::select($sql);
-        
-                if($user_profile){
-                    return Redirect::to('/');
+                if($token[0]->token != null){
+                    return Redirect::to('/email_validation');
                 }else{
-                    return Redirect::to('/profile');
-                    
+                    if($user_profile){
+                        return Redirect::to('/');
+                    }else{
+                        return Redirect::to('/profile');
+                    }
                 }
-                
             }else{
-                
                 echo ('Ya no estás en el sistema');
-            } 
+            }
+            
         } else {
-            return Redirect()->route('login')->withErrors(
-                ["password"=>"Las credenciales no coinciden"]);
+            return Redirect()->route('login')->with('error', 'Usuario o contraseña incorrectos');
         }
     }
 }
