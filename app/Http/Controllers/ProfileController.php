@@ -18,7 +18,7 @@ class ProfileController extends Controller
     public function index()
     {
         $sql =
-            'SELECT * FROM persona as p INNER JOIN direccion as d ON p.idDireccion = d.id WHERE p.id =' .
+            'SELECT * FROM persona as p INNER JOIN direccion as d ON p.idDireccion = d.id WHERE p.idUsuario =' .
             Auth::user()->id;
         $user_profile = Db::select($sql);
         // echo var_dump($user_profile[0]);

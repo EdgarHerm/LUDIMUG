@@ -24,7 +24,7 @@ class StudiesController extends Controller
     public function index()
     {
         $sqlP =
-            'SELECT persona.id FROM persona INNER JOIN users ON users.id = persona.id WHERE users.id =' .
+            'SELECT persona.id FROM persona INNER JOIN users ON users.id = persona.idUsuario WHERE users.id =' .
             Auth::user()->id;
         $id = Db::select($sqlP);
 
@@ -224,7 +224,7 @@ class StudiesController extends Controller
             $reporte->nombre_autorizo =
                 'Q.F.B. Silvia Mariela González Rodríguez';
             $reporte->cargo_autorizo = 'Responsable Sanitario LUDIMUG';
-            $reporte->folio = date ('Y').'LUDIMUG-' . rand(300, 99999);
+            $reporte->folio = date ('y'). date('M') . '-' .  rand(300, 99999);
             $reporte->id = $request->id;
             $reporte->idDClinicos = $dclinicos->id;
             $reporte->idTratamiento = $tratamiento->id;

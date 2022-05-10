@@ -247,7 +247,7 @@
                             <div class="col-md-6" id="divantiviral">
                                 <label for="inputAntiviral" class="form-label">Seleccione antiviral</label>
                                 <select class="form-control" name="tantiviral" id="tantiviral"
-                                    aria-label="Default select example" required onclick="mostraroantiviral()">
+                                    aria-label="Default select example" onclick="mostraroantiviral()">
                                     <option selected disabled value="">Seleccionar...</option>
                                     <option value="Amantadina">Amantadina</option>
                                     <option value="Rimantadina">Rimantadina</option>
@@ -268,7 +268,7 @@
                                     title="Fecha en que se inció el tratamiento antiviral en los últimos 15 días">
                                     ?
                                 </button>
-                                <input required type="date" class="form-control" min={{ $twoweeks }} max={{ $hoy }}
+                                <input type="date" class="form-control" min={{ $twoweeks }} max={{ $hoy }}
                                     name="fecha_tantiviral" id="fecha_tantiviral">
                             </div>
                         </div>
@@ -384,12 +384,12 @@
                             </div>
                             <div class="col-md-3" id="pais" style="display: none">
                                 <label for="inputCity" class="form-label">País</label>
-                                <input type="text" value="" class="form-control" required name="pais" id="pais">
+                                <input type="text" value="" class="form-control" name="pais" id="pais">
 
                             </div>
                             <div class="col-md-3" id="cviaje" style="display: none">
                                 <label for="inputCity" class="form-label">Ciudad</label>
-                                <input type="text" value="" class="form-control" name="ciudad" id="ciudad" required>
+                                <input type="text" value="" class="form-control" name="ciudad" id="ciudad">
 
                             </div>
 
@@ -427,7 +427,7 @@ echo $hoy; ?>
                             <div class="col-md-6" id="mvacuna" style="display: none">
                                 <label for="inputCity" class="form-label">Marca la vacuna:</label>
                                 <select class="form-control" name="idVacuna" id="idVacuna"
-                                    aria-label="Default select example" required>
+                                    aria-label="Default select example">
                                     <option selected disabled value="">Seleccionar...</option>
                                     @forelse($vacunas as $vacuna)
                                         <option value="{{ $vacuna->id }}">{{ $vacuna->nombre }}</option>
@@ -450,7 +450,7 @@ echo $hoy; ?>
                             <div class="col-md-4">
                                 <label for="inputCity" class="form-label">¿Cuántas dosis recibió?</label>
                                 <select class="form-control" name="dosis_covid" id="dosis_covid"
-                                    aria-label="Default select example" onclick="numerodosis()" required>
+                                    aria-label="Default select example" onclick="numerodosis()">
                                     <option selected disabled value="">Seleccionar...</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -461,14 +461,14 @@ echo $hoy; ?>
                                 <label for="inputCity" class="form-label">Fecha de vacunación (1era dosis):</label>
                                 <input class="form-control" type="date" min="2021-01-01" max=<?php $hoy = date('Y-m-d');
 echo $hoy; ?>
-                                    name="fecha_pdosis" id="fecha_pdosis" required>
+                                    name="fecha_pdosis" id="fecha_pdosis">
 
                             </div>
                             <div class="col-md-4" style="display: none" id="fechavac2div">
                                 <label for="inputCity" class="form-label">Fecha de vacunación (2da dosis):</label>
                                 <input class="form-control" type="date" min="2021-01-01" max=<?php $hoy = date('Y-m-d');
 echo $hoy; ?>
-                                    name="fecha_sdosis" id="fecha_sdosis" required>
+                                    name="fecha_sdosis" id="fecha_sdosis">
 
                             </div>
                         </div>

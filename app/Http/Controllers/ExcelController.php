@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use setasign\Fpdi\FPDI;
+use Auth;
 class ExcelController extends Controller
 {
     /**
@@ -250,11 +251,14 @@ class ExcelController extends Controller
     {
         $reporte = 'SELECT * FROM reporte WHERE id = ' . $id;
         $persona =
-            'SELECT * FROM persona INNER JOIN reporte ON reporte.id = persona.id WHERE persona.id = ' .
-            $id;
-
+            'SELECT * FROM persona INNER JOIN reporte ON reporte.idPersona = persona.id WHERE reporte.id = ' . $id; 
+        
         $personas = \DB::select($persona);
         $reportes = \DB::select($reporte);
+
+        $sql3 =
+            'SELECT * FROM direccion INNER JOIN persona ON persona.idDireccion = direccion.id  WHERE persona.id = ' . $personas[0]->id;; 
+        $direccion = \DB::select($sql3);
 
         $dianac = Carbon::parse($personas[0]->fechanac)->day;
         $fecha = Carbon::parse($reportes[0]->ftmuestra);
@@ -362,11 +366,72 @@ class ExcelController extends Controller
             }
 
             $pdf->SetXY(126, 88.5);
-            $pdf->Cell(3.14, 0.38, iconv('UTF-8', 'cp1250',$personas[0]->pnac));
+            $pdf->Cell(3.14, 0.38, iconv('UTF-8', 'cp1250',$personas[0]->pnacionalidad));
             
             //porigen
             $pdf->SetXY(163, 88.5);
             $pdf->Cell(3.14, 0.38, iconv('UTF-8', 'cp1250',$personas[0]->porigen));
+            
+           
+            
+            
+            //porigen
+
+            if($reportes[0]->ptmeses == 1 ){
+                $pdf->SetXY(67, 95);
+                $pdf->Cell(3.14, 0.38, 'X');
+            }
+            if($reportes[0]->ptmeses == 2){
+                $pdf->SetXY(83, 95);
+                $pdf->Cell(3.14, 0.38, 'X');
+            }
+            if($reportes[0]->ptmeses == 3 ){
+                $pdf->SetXY(100, 95);
+                $pdf->Cell(3.14, 0.38, 'X');
+            }
+            if($reportes[0]->ptmeses > 3 || $reportes[0]->ptmeses == 0){
+                $pdf->SetXY(115, 95);
+                $pdf->Cell(3.14, 0.38, $reportes[0]->ptmeses);
+            }
+            if($reportes[0]->fingmexico == null){
+                $pdf->SetXY(160, 95);
+                $pdf->Cell(3.14, 0.38, 'NA');
+            }else{
+                $pdf->SetXY(160, 95);
+                $pdf->Cell(3.14, 0.38, $reportes[0]->fingmexico);
+            }
+
+            $pdf->SetXY(55, 101.5);
+            $pdf->Cell(3.14, 0.38, iconv('UTF-8', 'cp1250', $personas[0]->pnac));
+
+            $pdf->SetXY(126, 101.5);
+            $pdf->Cell(3.14, 0.38, iconv('UTF-8', 'cp1250',$direccion[0]->efednac));
+
+            $pdf->SetXY(55, 105);
+            $pdf->Cell(3.14, 0.38, iconv('UTF-8', 'cp1250',$direccion[0]->eresidencia));
+
+
+            $pdf->SetXY(117.8, 105);
+            $pdf->Cell(3.14, 0.38, iconv('UTF-8', 'cp1250', $direccion[0]->mresidencia));
+
+            $pdf->SetXY(55, 109.5);
+            $pdf->Cell(3.14, 0.38, iconv('UTF-8', 'cp1250', $direccion[0]->localidad));
+
+            $pdf->SetXY(110, 109.5);
+            $pdf->Cell(3.14, 0.38, iconv('UTF-8', 'cp1250', Auth::user()->email));
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             $tpl2 = $pdf->importPage(2);
             $pdf->AddPage();

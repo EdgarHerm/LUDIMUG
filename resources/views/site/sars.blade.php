@@ -46,11 +46,13 @@
         <div class="tab-pane fade show active justify-content-center" id="pills-home" role="tabpanel"
             aria-labelledby="pills-home-tab">
 
-            <a data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" class="btn btn-warning mb-3">Exportar a
-                Pdf
-                <i class="far fa-file-pdf"></i>
-            </a>
-
+            @if ($reportes)
+                <a data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" class="btn btn-warning mb-3">Exportar
+                    a
+                    Pdf
+                    <i class="far fa-file-pdf"></i>
+                </a>
+            @endif
             <table class="table table-responsive table-dark" id="reportTable">
                 <thead class="mt-3">
                     <tr>
@@ -117,24 +119,26 @@
                                             <i class="far fa-eye"></i>
                                         </a>
                                     </div>
-                                    @if($report->idEvolucion)
-                                    <div class="col-md-4">
-                                        <a  href="{{ route('download.edit', $report->id) }}" class="btn btn-success text-dark">
-                                            <i class="fas fa-file-excel"></i>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <a href="{{ route('download.show', $report->id) }}" class="btn btn-warning text-dark">
-                                            <i class="fas fa-file-pdf"></i>
-                                        </a>
-                                    </div>
+                                    @if ($report->idEvolucion)
+                                        <div class="col-md-4">
+                                            <a href="{{ route('download.edit', $report->id) }}"
+                                                class="btn btn-success text-dark">
+                                                <i class="fas fa-file-excel"></i>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <a href="{{ route('download.show', $report->id) }}"
+                                                class="btn btn-warning text-dark">
+                                                <i class="fas fa-file-pdf"></i>
+                                            </a>
+                                        </div>
                                     @endif
                                 </div>
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" class="text-center">
+                            <td colspan="7" class="text-center">
                                 No hay registros
                             </td>
                     @endforelse
@@ -229,29 +233,6 @@
                 </div>
             </div>
             <br>
-
-            <form hidden method="POST" action="http://localhost/ludimug/public/form-post">
-                {{ csrf_field() }}
-                <div class="row">
-                    <input type="radio" name="skills[a]" value="[0,1]">PHP</br>
-                    <input type="radio" name="skills[a]" value="mysql">MySQL</br>
-                </div>
-
-                <input type="radio" name="skills[b]" value="javascript">JavaScript</br>
-                <input type="radio" name="skills[b]" value="laravel">Laravel</br>
-                <input type="submit">
-            </form>
-            {{-- <input type="radio" class="btn-check" name="skills[c]" id="success-outlined" autocomplete="off">
-            <label class="btn btn-outline-danger" for="success-outlined">Sí</label>
-
-            <input value="" type="radio" class="btn-check" name="skills[c]" id="danger-outlined" autocomplete="off">
-            <label class="btn btn-outline-success" for="danger-outlined">No</label> --}}
-
-
-        </div>
-
-        <div class="tab-pane fade show active justify-content-center" id="pills-comorbidades" role="tabpanel"
-            aria-labelledby="pills-comorbidades-tab">
         </div>
     </div>
 @endsection
