@@ -21,10 +21,19 @@
                 <div class="card-body">
 
                     @if (isset($user_profile))
-                    <h3 class="card-title text-center">MI PERFIL</h3>
+                        <h3 class="card-title text-center">MI PERFIL</h3>
                     @else
-                    <h3 class="card-title text-center" style="color:red">COMPLETAR PERFIL</h3>
+                        <h3 class="card-title text-center" style="color:red">COMPLETAR PERFIL</h3>
                     @endif
+
+
+                    <input type="text" readonly style="display:none"
+                        value="{{ !empty($user_profile[0]) ? $user_profile[0]->id : '' }}" class="form-control"
+                        name="idpersona" id="idpersona" xyz required>
+
+                    <input type="text" readonly style="display:none"
+                        value="{{ !empty($user_profile[0]) ? $user_profile[0]->idDireccion : '' }}" class="form-control"
+                        name="iddireccion" id="iddireccion" xyz required>
 
                     <div class="accordion" id="accordionExample">
                         <div class="accordion-item">
@@ -62,10 +71,14 @@
                                             <label for="inputState" class="form-label">Ocupación</label>
                                             <select class="form-control" name="ocupacion" id="ocupacion"
                                                 aria-label="Default select example" required>
-                                                <option selected disabled
-                                                    value="{{ !empty($user_profile[0]) ? $user_profile[0]->ocupacion : '' }}">
-                                                    {{ !empty($user_profile[0]) ? $user_profile[0]->ocupacion : 'Seleccionar...' }}
-                                                </option>
+
+                                                @if (!empty($user_profile[0]->ocupacion))
+                                                    <option selected readonly value="{{ $user_profile[0]->ocupacion }}">
+                                                        {{ $user_profile[0]->ocupacion }}
+                                                    </option>
+                                                @else
+                                                    <option selected disabled value="">Seleccionar...</option>
+                                                @endif
                                                 <option value="Estudiante">Estudiante</option>
                                                 <option value="Empleado">Empleado</option>
                                                 <option value="Otro">Otro</option>
@@ -107,10 +120,26 @@ echo $hoy; ?> name="fechanac"
                                             <label for="inputAddress" class="form-label">Sexo</label>
                                             <select class="form-control" name="sexo" id="sexo"
                                                 aria-label="Default select example" required>
-                                                <option selected disabled
-                                                    value="{{ !empty($user_profile[0]) ? $user_profile[0]->sexo : '' }}">
-                                                    {{ !empty($user_profile[0]) ? $user_profile[0]->sexo : 'Seleccionar...' }}
-                                                </option>
+                                                @if (!empty($user_profile[0]->sexo))
+                                                    @if ($user_profile[0]->sexo == 'H')
+                                                        <option selected readonly value="{{ $user_profile[0]->sexo }}">
+                                                            Hombre
+                                                        </option>
+                                                    @endif
+                                                    @if ($user_profile[0]->sexo == 'M')
+                                                        <option selected readonly value="{{ $user_profile[0]->sexo }}">
+                                                            Mujer
+                                                        </option>
+                                                    @endif
+
+                                                    @if ($user_profile[0]->sexo == 'O')
+                                                        <option selected readonly value="{{ $user_profile[0]->sexo }}">
+                                                            Prefiero no específicar
+                                                        </option>
+                                                    @endif
+                                                @else
+                                                    <option selected disabled value="">Seleccionar...</option>
+                                                @endif
                                                 <option value="H">Hombre</option>
                                                 <option value="M">Mujer</option>
                                                 <option value="O">Prefiero no específicar</option>
@@ -123,17 +152,20 @@ echo $hoy; ?> name="fechanac"
                                             <label for="inputAddress" class="form-label">Teléfono Celular</label>
                                             <input type="text"
                                                 value="{{ !empty($user_profile[0]) ? $user_profile[0]->telefonoc : '' }}"
-                                                name="telefonoc" class="form-control" id="inputCity" required>
+                                                name="telefonoc" class="form-control" id="telefonoc" required>
                                         </div>
                                         <div class="col-md-4">
                                             <label for="inputCity" class="form-label">¿Se reconoce cómo índigena?
                                             </label>
                                             <select class="form-control" name="pindigena" id="pindigena"
                                                 aria-label="Default select example" required>
-                                                <option selected disabled
-                                                    value="{{ !empty($user_profile[0]) ? $user_profile[0]->pindigena : '' }}">
-                                                    {{ !empty($user_profile[0]) ? $user_profile[0]->pindigena : 'Seleccionar...' }}
-                                                </option>
+                                                @if (!empty($user_profile[0]->pindigena))
+                                                    <option selected readonly value="{{ $user_profile[0]->pindigena }}">
+                                                        {{ $user_profile[0]->pindigena }}
+                                                    </option>
+                                                @else
+                                                    <option selected disabled value="">Seleccionar...</option>
+                                                @endif
                                                 <option value="Sí">Sí</option>
                                                 <option value="No">No</option>
                                             </select>
@@ -143,10 +175,13 @@ echo $hoy; ?> name="fechanac"
                                                 índigena? </label>
                                             <select class="form-control" name="lindigena" id="lindigena"
                                                 aria-label="Default select example" required>
-                                                <option selected disabled
-                                                    value="{{ !empty($user_profile[0]) ? $user_profile[0]->lindigena : '' }}">
-                                                    {{ !empty($user_profile[0]) ? $user_profile[0]->lindigena : 'Seleccionar...' }}
-                                                </option>
+                                                @if (!empty($user_profile[0]->lindigena))
+                                                    <option selected readonly value="{{ $user_profile[0]->lindigena }}">
+                                                        {{ $user_profile[0]->lindigena }}
+                                                    </option>
+                                                @else
+                                                    <option selected disabled value="">Seleccionar...</option>
+                                                @endif
                                                 <option value="Sí">Sí</option>
                                                 <option value="No">No</option>
                                             </select>
@@ -157,10 +192,13 @@ echo $hoy; ?> name="fechanac"
                                             <label for="inputAddress" class="form-label">Nacionalidad</label>
                                             <select class="form-control" name="nacionalidad" id="nacionalidad"
                                                 aria-label="Default select example" required>
-                                                <option selected disabled
-                                                    value="{{ !empty($user_profile[0]) ? $user_profile[0]->nacionalidad : '' }}">
-                                                    {{ !empty($user_profile[0]) ? $user_profile[0]->nacionalidad : 'Seleccionar...' }}
-                                                </option>
+                                                @if (!empty($user_profile[0]->nacionalidad))
+                                                    <option selected readonly value="{{ $user_profile[0]->nacionalidad }}">
+                                                        {{ $user_profile[0]->nacionalidad }}
+                                                    </option>
+                                                @else
+                                                    <option selected disabled value="">Seleccionar...</option>
+                                                @endif
                                                 <option value="Mexicana">Mexicana</option>
                                                 <option value="Extranjera">Extranjera</option>
                                             </select>

@@ -109,7 +109,7 @@
             height: 7px;
         "></div>
 
-<body>
+<body onload="validaciones()">
 
     <div class="container">
 

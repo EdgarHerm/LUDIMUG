@@ -1,3 +1,20 @@
+function receiveError(error) {
+    $(document).ready(function() {
+        $("#myToast").toast("show");
+        
+    });
+    document.getElementById("error").innerHTML = error;
+}
+
+function validaciones(){
+    if(document.getElementById("ptmeses").value == 0){
+        document.getElementById("fingmexico").readOnly = true;
+    }
+    else{
+        document.getElementById("fingmexico").readOnly = false;
+    }
+}
+
 function generatePdf() {
     html2canvas(document.getElementById("reportTable"), {
         onrendered: function (canvas) {

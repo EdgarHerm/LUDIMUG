@@ -49,7 +49,7 @@ class LoginController extends Controller
             if(Auth::user()->estatus=='1' && Auth::user()->rol=='1'){
                 $sqltoken = 'SELECT token FROM users WHERE id ='.Auth::user()->id;
                 $token = DB::select($sqltoken);
-                $sql = 'SELECT * FROM persona WHERE idPersona ='.Auth::user()->id;
+                $sql = 'SELECT * FROM persona WHERE id ='.Auth::user()->id;
                 $user_profile = Db::select($sql);
                 if($token[0]->token != null){
                     return Redirect::to('/email_validation');

@@ -17,7 +17,7 @@ class SiteController extends Controller
      */
     public function index()
     {
-        $sql = 'SELECT * FROM persona INNER JOIN users ON persona.idUsuario = users.id '.'WHERE idPersona =' . Auth::user()->id.' AND users.rol = 1';
+        $sql = 'SELECT * FROM persona as p INNER JOIN users as u ON p.idUsuario = u.id '.'WHERE u.id =' . Auth::user()->id.' AND u.rol = 1';
         $user_profile = Db::select($sql);
         if ($user_profile or Auth::user()->rol == 0) {
             return view('site.index');

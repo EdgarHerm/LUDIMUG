@@ -5,7 +5,7 @@
     {{ Form::open(['url' => '/form-post']) }}
     <div class="accordion" id="accordionExample">
         {{ csrf_field() }}
-        <input type="hidden" value="{{ $idPersona[0]->idPersona}}" class="form-control" name="idPersona" id="idPersona">
+        <input type="hidden" value="{{ $id[0]->id}}" class="form-control" name="id" id="id">
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingReporte">
                 <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse"
@@ -19,7 +19,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label for="inputCity" class="form-label">Paises en tránsito en los últimos tres meses:</label>
-                            <input type="number" min="0" max="20" value="0" class="form-control" name="ptmeses" id="ptmeses"
+                            <input onclick="validaciones()" type="number" required min="0" max="20" value="0" class="form-control" name="ptmeses" id="ptmeses"
                                 >
                         </div>
                         <div class="col-md-6">
@@ -29,7 +29,7 @@
                                 title="Fecha en que ingresaste a México en los últimos 3 meses">
                                 ?
                             </button>
-                            <input type="date" class="form-control" min={{ $hoy2 }} max={{ $hoy }}
+                            <input type="date" class="form-control" required min={{ $hoy2 }} max={{ $hoy }}
                                 name="fingmexico" id="fingmexico">
                         </div>
                     </div>
@@ -52,12 +52,12 @@
 
                         <div class="col-md-6">
                             <label for="inputCity" class="form-label">Servicio de ingreso</label>
-                            <input type="text" value="Prueba COVID-19" class="form-control" name="singreso" id="singreso"
+                            <input type="text" required value="Prueba COVID-19" class="form-control" name="singreso" id="singreso"
                                 readonly>
                         </div>
                         <div class="col-md-6">
                             <label for="inputState" class="form-label">Tipo de paciente</label>
-                            <input type="text" value="Ambulatorio" class="form-control" name="tpaciente" id="tpaciente"
+                            <input type="text" required value="Ambulatorio" class="form-control" name="tpaciente" id="tpaciente"
                                 readonly>
                         </div>
                     </div>
@@ -70,7 +70,7 @@
                                 ?
                             </button>
                             <input type="date" class="form-control" min={{ $twoweeks }} max={{ $hoy }}
-                                name="finisintomas" id="finisintomas">
+                                name="finisintomas" required id="finisintomas">
                         </div>
                     </div>
                     <hr>
@@ -81,6 +81,20 @@
                                 síntomas:
                             </h5>
                         </label>
+                    </div>
+                    <div class="position-relative">
+                        <div class="toast bg-danger text-white fade position-absolute top-50 start-50 translate-middle" id="myToast">
+                            <div class="toast-header">
+                                <strong class="me-auto"><i class="bi-gift-fill"></i>Reporte</strong>
+                                <small>Error</small>
+                                <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+                            </div>
+                            <div class="toast-body">
+                                <a id="error">
+                                    
+                                </a>
+                            </div>
+                        </div>
                     </div>
                     <div class="row mt-1">
                         <div class="col md-6">
@@ -100,16 +114,16 @@
                                     </div>
                                     <div class="col-md-7">
                                         <input value="0" type="radio" class="btn-check"
-                                            name="sintoma[{{ $row->idSintoma }}]" autocomplete="off"
-                                            id="sintomasi{{ $row->idSintoma }}">
+                                            name="sintoma[{{ $row->id }}]" autocomplete="off"
+                                            id="sintomasi{{ $row->id }}" required oninvalid="receiveError('Falta completar el síntoma {{$row->nombre}}')">
                                         <label class="btn btn-outline-dark"
-                                            for="sintomasi{{ $row->idSintoma }}">Sí</label>
+                                            for="sintomasi{{ $row->id }}">Sí</label>
 
                                         <input value="1" type="radio" class="btn-check"
-                                            name="sintoma[{{ $row->idSintoma }}]" autocomplete="off"
-                                            id="sintomano{{ $row->idSintoma }}">
+                                            name="sintoma[{{ $row->id }}]" autocomplete="off"
+                                            id="sintomano{{ $row->id }}" required oninvalid="receiveError('Falta completar el síntoma {{$row->nombre}}')">
                                         <label class="btn btn-outline-warning"
-                                            for="sintomano{{ $row->idSintoma }}">No</label>
+                                            for="sintomano{{ $row->id }}">No</label>
                                     </div>
                                 </div>
                             @empty
@@ -117,6 +131,7 @@
 
 
                         </div>
+                        
                         <div class="col md-6">
                             <div class="row">
                                 <div class="col-12">
@@ -133,16 +148,16 @@
                                     </div>
                                     <div class="col-md-6">
                                         <input value="0" type="radio" class="btn-check"
-                                            name="comorbilidad[{{ $row->idComorbilidad }}]" autocomplete="off"
-                                            id="comorbilidadsi{{ $row->idComorbilidad }}">
+                                            name="comorbilidad[{{ $row->id }}]" required oninvalid="receiveError('Falta completar la co-morbilidad {{$row->nombre}}')" autocomplete="off"
+                                            id="comorbilidadsi{{ $row->id }}">
                                         <label class="btn btn-outline-dark"
-                                            for="comorbilidadsi{{ $row->idComorbilidad }}">Sí</label>
+                                            for="comorbilidadsi{{ $row->id }}">Sí</label>
 
                                         <input value="1" type="radio" class="btn-check"
-                                            name="comorbilidad[{{ $row->idComorbilidad }}]" autocomplete="off"
-                                            id="comorbilidadno{{ $row->idComorbilidad }}">
+                                            name="comorbilidad[{{ $row->id }}]" required oninvalid="receiveError('Falta completar la co-morbilidad {{$row->nombre}}')" autocomplete="off"
+                                            id="comorbilidadno{{ $row->id }}" >
                                         <label class="btn btn-outline-warning"
-                                            for="comorbilidadno{{ $row->idComorbilidad }}">No</label>
+                                            for="comorbilidadno{{ $row->id }}">No</label>
                                     </div>
                                 </div>
                             @empty
@@ -150,7 +165,7 @@
                             <div class="row mt-1">
                                 <div class="col-md-8">
                                     <label for="inputCity" class="form-label">Específique otros:</label>
-                                    <input type="text" value="" class="form-control" name="co_m_otros" id="co_m_otros">
+                                    <input type="text" value="" class="form-control" required name="co_m_otros" id="co_m_otros">
                                 </div>
                             </div>
                         </div>
@@ -172,16 +187,16 @@
                                     </div>
                                     <div class="col-md-7">
                                         <input value="0" type="radio" class="btn-check"
-                                            name="osintoma[{{ $row->idOSintoma }}]" autocomplete="off"
-                                            id="osintomasi{{ $row->idOSintoma }}">
+                                            name="osintoma[{{ $row->id }}]" required oninvalid="receiveError('Falta completar el síntoma (otro) {{$row->nombre}}')" autocomplete="off"
+                                            id="osintomasi{{ $row->id }}">
                                         <label class="btn btn-outline-dark"
-                                            for="osintomasi{{ $row->idOSintoma }}">Sí</label>
+                                            for="osintomasi{{ $row->id }}">Sí</label>
 
                                         <input value="1" type="radio" class="btn-check"
-                                            name="osintoma[{{ $row->idOSintoma }}]" autocomplete="off"
-                                            id="osintomano{{ $row->idOSintoma }}">
+                                            name="osintoma[{{ $row->id }}]" required oninvalid="receiveError('Falta completar el síntoma (otro) {{$row->nombre}}')" autocomplete="off"
+                                            id="osintomano{{ $row->id }}">
                                         <label class="btn btn-outline-warning"
-                                            for="osintomano{{ $row->idOSintoma }}">No</label>
+                                            for="osintomano{{ $row->id }}">No</label>
                                     </div>
                                 </div>
                             @empty
@@ -209,7 +224,7 @@
                             <label for="inputState" class="form-label">¿Desde el inicio de los síntomas ha recibido
                                 tratamiento con antipiréticos?</label>
                             <select class="form-control" name="p_tantipireticos" id="p_tantipireticos"
-                                aria-label="Default select example">
+                                aria-label="Default select example" required>
                                 <option selected disabled value="">Seleccionar...</option>
                                 <option value="Sí">Sí</option>
                                 <option value="No">No</option>
@@ -219,7 +234,7 @@
                             <label for="inputState" class="form-label">¿Desde el inicio de los síntomas ha recibido
                                 tratamiento con antivirales?</label>
                             <select class="form-control" name="p_tantiviral" onclick="mostrar()" id="p_tantiviral"
-                                aria-label="Default select example">
+                                aria-label="Default select example" required>
                                 <option selected disabled value="">Seleccionar...</option>
                                 <option value="Sí">Sí</option>
                                 <option value="No">No</option>
@@ -232,7 +247,7 @@
                             <div class="col-md-6" id="divantiviral">
                                 <label for="inputAntiviral" class="form-label">Seleccione antiviral</label>
                                 <select class="form-control" name="tantiviral" id="tantiviral"
-                                    aria-label="Default select example" onclick="mostraroantiviral()">
+                                    aria-label="Default select example" required onclick="mostraroantiviral()">
                                     <option selected disabled value="">Seleccionar...</option>
                                     <option value="Amantadina">Amantadina</option>
                                     <option value="Rimantadina">Rimantadina</option>
@@ -243,7 +258,7 @@
                             </div>
                             <div class="col-md-3" id="divoantv" style="display: none">
                                 <label for="inputCity" class="form-label">Otro:</label>
-                                <input type="text" value="No" class="form-control" name="oantiviral" id="oantiviral">
+                                <input type="text" required value="NA" class="form-control" name="oantiviral" id="oantiviral">
                             </div>
                             <div class="col-md-6">
                                 <label for="inputCity" class="form-label">¿Cuándo se inicio el tratamiento antiviral?
@@ -253,7 +268,7 @@
                                     title="Fecha en que se inció el tratamiento antiviral en los últimos 15 días">
                                     ?
                                 </button>
-                                <input type="date" class="form-control" min={{ $twoweeks }} max={{ $hoy }}
+                                <input required type="date" class="form-control" min={{ $twoweeks }} max={{ $hoy }}
                                     name="fecha_tantiviral" id="fecha_tantiviral">
                             </div>
                         </div>
@@ -296,7 +311,7 @@
                             <div class="col-md-12">
                                 <label for="inputState" class="form-label">¿Tuvo contacto con casos con enfermedad
                                     respiratoria en las ultimas dos semanas?</label>
-                                <select class="form-control" name="p_cerespiratoria" id="p_cerespiratoria"
+                                <select required class="form-control" name="p_cerespiratoria" id="p_cerespiratoria"
                                     aria-label="Default select example">
                                     <option selected disabled value="">Seleccionar...</option>
                                     <option value="1">Sí</option>
@@ -320,11 +335,11 @@
                                     </div>
                                     <div class="col-md-7">
                                         <input type="radio" class="btn-check" value="0" name="p_caves" id="avessi"
-                                            autocomplete="off">
+                                            autocomplete="off" required>
                                         <label class="btn btn-outline-dark"  for="avessi">Sí</label>
 
                                         <input value="1" type="radio" class="btn-check" name="p_caves" id="avesno"
-                                            autocomplete="off">
+                                            autocomplete="off" required>
                                         <label class="btn btn-outline-warning"  for="avesno">No</label>
                                     </div>
 
@@ -337,11 +352,11 @@
                                     </div>
                                     <div class="col-md-7">
                                         <input type="radio" class="btn-check"  value="0" name="p_cerdos" id="cerdossi"
-                                            autocomplete="off">
+                                            autocomplete="off" required>
                                         <label class="btn btn-outline-dark" for="cerdossi">Sí</label>
 
                                         <input  type="radio" value="1" class="btn-check" name="p_cerdos" id="cerdosno"
-                                            autocomplete="off">
+                                            autocomplete="off" required>
                                         <label class="btn btn-outline-warning"  for="cerdosno">No</label>
                                     </div>
                                 </div>
@@ -351,7 +366,7 @@
 
                                     <div class="col-md-12">
                                         <label for="inputCity" class="form-label">Otro animal</label>
-                                        <input type="text" value="" class="form-control" name="p_otroanimal" id="p_otroanimal">
+                                        <input type="text" value="NA" required class="form-control" name="p_otroanimal" id="p_otroanimal">
                                     </div>
                                 </div>
                             </div>
@@ -361,20 +376,20 @@
                                 <label for="inputCity" class="form-label">¿Realizó algún viaje 7 días antes del inicio
                                     de signos y síntomas?</label>
                                 <select class="form-control" name="p_viaje" id="p_viaje"
-                                    aria-label="Default select example" onclick="mostrarp()">
-                                    <option selected disabled value="">Seleccionar...</option>
+                                    aria-label="Default select example" onclick="mostrarp()" required>
+                                    <option selected disabled value="" >Seleccionar...</option>
                                     <option value="0">Sí</option>
                                     <option value="1">No</option>
                                 </select>
                             </div>
                             <div class="col-md-3" id="pais" style="display: none">
                                 <label for="inputCity" class="form-label">País</label>
-                                <input type="text" value="" class="form-control" name="pais" id="pais">
+                                <input type="text" value="" class="form-control" required name="pais" id="pais">
 
                             </div>
                             <div class="col-md-3" id="cviaje" style="display: none">
                                 <label for="inputCity" class="form-label">Ciudad</label>
-                                <input type="text" value="" class="form-control" name="ciudad" id="ciudad">
+                                <input type="text" value="" class="form-control" name="ciudad" id="ciudad" required>
 
                             </div>
 
@@ -384,7 +399,7 @@
                                 <label for="inputCity" class="form-label">¿Recibió la vacuna contra influenza en último
                                     año?</label>
                                 <select class="form-control" name="pvacuna_influenza" id="pvacuna_influenza"
-                                    aria-label="Default select example" onclick="mostrarvinfluenza()">
+                                    aria-label="Default select example" onclick="mostrarvinfluenza()" required>
                                     <option selected disabled value="">Seleccionar...</option>
                                     <option value="0">Sí</option>
                                     <option value="1">No</option>
@@ -394,7 +409,7 @@
                                 <label for="inputCity" class="form-label">Fecha de vacunación:</label>
                                 <input class="form-control" type="date" min="2021-01-01" max=<?php $hoy = date('Y-m-d');
 echo $hoy; ?>
-                                    name="fvacunacion_influenza" id="fvacunacion_influenza">
+                                    name="fvacunacion_influenza" id="fvacunacion_influenza" required>
 
                             </div>
                         </div>
@@ -403,7 +418,7 @@ echo $hoy; ?>
                                 <label for="inputCity" class="form-label">¿Recibió la vacuna contra COVID-19 en último
                                     año?</label>
                                 <select class="form-control" name="pvacuna_covid" id="pvacuna_covid"
-                                    aria-label="Default select example" onclick="mostrarvacuna()">
+                                    aria-label="Default select example" onclick="mostrarvacuna()" required>
                                     <option selected disabled value="">Seleccionar...</option>
                                     <option value="0">Sí</option>
                                     <option value="1">No</option>
@@ -412,10 +427,10 @@ echo $hoy; ?>
                             <div class="col-md-6" id="mvacuna" style="display: none">
                                 <label for="inputCity" class="form-label">Marca la vacuna:</label>
                                 <select class="form-control" name="idVacuna" id="idVacuna"
-                                    aria-label="Default select example">
+                                    aria-label="Default select example" required>
                                     <option selected disabled value="">Seleccionar...</option>
                                     @forelse($vacunas as $vacuna)
-                                        <option value="{{ $vacuna->idVacuna }}">{{ $vacuna->nombre }}</option>
+                                        <option value="{{ $vacuna->id }}">{{ $vacuna->nombre }}</option>
                                         {{-- <option value="AstraZeneca">AstraZeneca</option>
                                 <option value="CanSino">CanSino</option>
                                 <option value="Moderna">Moderna</option>
@@ -435,7 +450,7 @@ echo $hoy; ?>
                             <div class="col-md-4">
                                 <label for="inputCity" class="form-label">¿Cuántas dosis recibió?</label>
                                 <select class="form-control" name="dosis_covid" id="dosis_covid"
-                                    aria-label="Default select example" onclick="numerodosis()">
+                                    aria-label="Default select example" onclick="numerodosis()" required>
                                     <option selected disabled value="">Seleccionar...</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -446,14 +461,14 @@ echo $hoy; ?>
                                 <label for="inputCity" class="form-label">Fecha de vacunación (1era dosis):</label>
                                 <input class="form-control" type="date" min="2021-01-01" max=<?php $hoy = date('Y-m-d');
 echo $hoy; ?>
-                                    name="fecha_pdosis" id="fecha_pdosis">
+                                    name="fecha_pdosis" id="fecha_pdosis" required>
 
                             </div>
                             <div class="col-md-4" style="display: none" id="fechavac2div">
                                 <label for="inputCity" class="form-label">Fecha de vacunación (2da dosis):</label>
                                 <input class="form-control" type="date" min="2021-01-01" max=<?php $hoy = date('Y-m-d');
 echo $hoy; ?>
-                                    name="fecha_sdosis" id="fecha_sdosis">
+                                    name="fecha_sdosis" id="fecha_sdosis" required>
 
                             </div>
                         </div>

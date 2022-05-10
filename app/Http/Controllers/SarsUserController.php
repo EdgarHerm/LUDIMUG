@@ -19,14 +19,14 @@ class SarsUserController extends Controller
     public function index()
     {
         $psql =
-            'SELECT idPersona FROM persona WHERE idUsuario = ' .
+            'SELECT id FROM persona WHERE idUsuario = ' .
             Auth::user()->id;
-        $idPersona = DB::select($psql);
+        $id = DB::select($psql);
 
-        if ($idPersona) {
+        if ($id) {
             $reportescons =
-                'SELECT * FROM reporte INNER JOIN persona ON persona.idPersona = reporte.idPersona INNER JOIN direccion ON persona.idDireccion = direccion.idDireccion WHERE persona.idPersona = ' .
-                $idPersona[0]->idPersona;
+                'SELECT * FROM reporte INNER JOIN persona ON persona.id = reporte.id INNER JOIN direccion ON persona.idDireccion = direccion.id WHERE persona.id = ' .
+                $id[0]->id;
             $reportes = Db::select($reportescons);
             return view('site.sars_user', compact('reportes'));
         }else{

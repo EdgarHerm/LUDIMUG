@@ -11,6 +11,7 @@ use App\Models\DatosClinicosSintomas;
 use App\Models\DatosClinicosOSintomas;
 use App\Models\AntecedentesEpidemiologicos;
 use App\Models\Reporte;
+use Carbon\Carbon;
 use Auth;
 
 class StudiesController extends Controller
@@ -22,8 +23,10 @@ class StudiesController extends Controller
      */
     public function index()
     {
-        $sqlP = 'SELECT idPersona FROM persona INNER JOIN users ON users.id = persona.idPersona WHERE users.id ='.Auth::user()->id;
-        $idPersona = Db::select($sqlP);
+        $sqlP =
+            'SELECT persona.id FROM persona INNER JOIN users ON users.id = persona.id WHERE users.id =' .
+            Auth::user()->id;
+        $id = Db::select($sqlP);
 
         $sql4 = 'SELECT * FROM vacunas';
         $vacunas = Db::select($sql4);
@@ -41,7 +44,19 @@ class StudiesController extends Controller
         $hoy2 = date('Y-m-d', strtotime(date('Y-m-d') . '- 3 month'));
         $twoweeks = date('Y-m-d', strtotime(date('Y-m-d') . '- 2 week'));
 
-        return view('site.studies',compact('hoy2','hoy','twoweeks','sintomas','comorbilidades','o_sintomas','vacunas', 'idPersona'));
+        return view(
+            'site.studies',
+            compact(
+                'hoy2',
+                'hoy',
+                'twoweeks',
+                'sintomas',
+                'comorbilidades',
+                'o_sintomas',
+                'vacunas',
+                'id'
+            )
+        );
         //
     }
 
@@ -70,42 +85,6 @@ class StudiesController extends Controller
     {
         // echo dd($request->all());
         try {
-            $validation = $request->validate([
-                'singreso' => 'required',
-                'tpaciente' => 'required',
-                'finisintomas' => 'required',
-                'co_m_otros' => 'required',
-
-                'sintoma.*' => 'required',
-                'comorbilidad.*' => 'required',
-                'osintoma.*' => 'required',
-
-                'p_tantipireticos' => 'required',
-                'p_tantiviral' => 'required',
-                'tantiviral' => 'required',
-                'oantiviral' => 'required',
-                'fecha_tantiviral' => 'required',
-
-                'p_cerespiratoria' => 'required',
-                'p_caves' => 'required',
-                'p_cerdos' => 'required',
-                'p_otroanimal' => 'required',
-                'p_viaje' => 'required',
-                'pais' => 'required',
-                'ciudad' => 'required',
-                'pvacuna_influenza' => 'required',
-                'fvacunacion_influenza' => 'required',
-                'pvacuna_covid' => 'required',
-                'idVacuna' => 'required',
-                'dosis_covid' => 'required',
-                'fecha_pdosis' => 'required',
-                'fecha_sdosis' => 'required',
-
-                'ptmeses' => 'required',
-                'fingmexico' => 'required',
-
-            ]);
-
             $array = $request->sintoma;
             $array = array_map(function ($value) {
                 return intval($value);
@@ -124,7 +103,7 @@ class StudiesController extends Controller
             Db::beginTransaction();
 
             $dclinicos = new DatosClinicos();
-            
+
             $dclinicos->singreso = $request->singreso;
             $dclinicos->tpaciente = $request->tpaciente;
             $dclinicos->fingreso = date('Y-m-d');
@@ -132,7 +111,7 @@ class StudiesController extends Controller
             $dclinicos->co_m_otros = $request->co_m_otros;
             $dclinicos->d_probable = 'Enfermedad tipo influenza (ETI)';
             $dclinicos->save();
-            
+
             // echo var_dump($request->sintoma);
             // echo var_dump($array);
 
@@ -144,7 +123,7 @@ class StudiesController extends Controller
                 $dcsintomas->estatus = $array[$i];
                 $dcsintomas->save();
             }
-            
+
             // echo var_dump($request->sintoma);
             // echo var_dump($array);
 
@@ -168,15 +147,21 @@ class StudiesController extends Controller
                 $dcosintomas->estatus = $array[$i];
                 $dcosintomas->save();
             }
-            
 
             $tratamiento = new Tratamiento();
             //echo dd($tratamiento);
             $tratamiento->p_tantipireticos = $request->p_tantipireticos;
             $tratamiento->p_tantiviral = $request->p_tantiviral;
-            $tratamiento->tantiviral = $request->tantiviral;
-            $tratamiento->oantiviral = $request->oantiviral;
-            $tratamiento->fecha_tantiviral = $request->fecha_tantiviral;
+            if ($request->p_tantiviral == 'Si') {
+                $tratamiento->tantiviral = $request->tantiviral;
+                $tratamiento->oantiviral = $request->oantiviral;
+                $tratamiento->fecha_tantiviral = $request->fecha_tantiviral;
+            } else {
+                $tratamiento->tantiviral = null;
+                $tratamiento->oantiviral = null;
+                $tratamiento->fecha_tantiviral = null;
+            }
+
             $tratamiento->pum_tantimicrobianos = 1;
             $tratamiento->pum_tantiviral = 1;
             $tratamiento->pum_tipoantiviral = 'NA';
@@ -189,33 +174,58 @@ class StudiesController extends Controller
             $antepidemio->p_cerdos = $request->p_cerdos;
             $antepidemio->p_otroanimal = $request->p_otroanimal;
             $antepidemio->p_viaje = $request->p_viaje;
-            $antepidemio->pais = $request->pais;
-            $antepidemio->ciudad = $request->ciudad;
+            if ($request->p_viaje == 'Si') {
+                $antepidemio->pais = $request->pais;
+                $antepidemio->ciudad = $request->ciudad;
+            } else {
+                $antepidemio->pais = null;
+                $antepidemio->ciudad = null;
+            }
+
             $antepidemio->pvacuna_influenza = $request->pvacuna_influenza;
-            $antepidemio->fvacunacion_influenza = $request->fvacunacion_influenza;
+            if ($request->pvacuna_influenza == 'Si') {
+                $antepidemio->fvacunacion_influenza =
+                    $request->fvacunacion_influenza;
+            } else {
+                $antepidemio->fvacunacion_influenza = null;
+            }
+
             $antepidemio->pvacuna_covid = $request->pvacuna_covid;
+            if ($request->pvacuna_covid == 'Si') {
+                $antepidemio->dosis_covid = $request->dosis_covid;
+                if ($request->dosis_covid == 1) {
+                    $antepidemio->fecha_pdosis = $request->fecha_pdosis;
+                    $antepidemio->fecha_sdosis = null;
+                } else {
+                    $antepidemio->fecha_pdosis = $request->fecha_pdosis;
+                    $antepidemio->fecha_sdosis = $request->fecha_sdosis;
+                }
+            } else {
+                $antepidemio->dosis_covid = 0;
+                $antepidemio->fecha_pdosis = null;
+                $antepidemio->fecha_sdosis = null;
+            }
             $antepidemio->idVacuna = $request->idVacuna;
-            $antepidemio->dosis_covid = $request->dosis_covid;
-            $antepidemio->fecha_pdosis = $request->fecha_pdosis;
-            $antepidemio->fecha_sdosis = $request->fecha_sdosis;
 
             $antepidemio->save();
 
             $reporte = new Reporte();
-            $reporte->unidad = "LUDIMUG";
+            $reporte->unidad = 'LUDIMUG';
             $reporte->ptmeses = $request->ptmeses;
             $reporte->fingmexico = $request->fingmexico;
-            $reporte->mpcr = "Sí";
-            $reporte->rmuestra = "Pendiente";
-            $reporte->tmuestra = "SALIVA";
+            $reporte->mpcr = 'Sí';
+            $reporte->rmuestra = 'Pendiente';
+            $reporte->tmuestra = 'SALIVA';
             $reporte->ftmuestra = date('Y-m-d');
-            $reporte->resultadopcr = "Pendiente";
-            $reporte->nombre_elaboro = "Q.F.B. Silvia Mariela González Rodríguez";
-            $reporte->cargo_elaboro = "Responsable Sanitario LUDIMUG";
-            $reporte->nombre_autorizo = "Q.F.B. Silvia Mariela González Rodríguez";
-            $reporte->cargo_autorizo = "Responsable Sanitario LUDIMUG";
-            $reporte->folio = "LUDIMUG-".\Carbon\Carbon::parse(strtotime(date('Y-m-d'))->formatLocalized('%B%d')).rand();
-            $reporte->idPersona = $request->idPersona;
+            $reporte->resultadopcr = 'Pendiente';
+            $reporte->nombre_elaboro =
+                'Q.F.B. Silvia Mariela González Rodríguez';
+            $reporte->cargo_elaboro = 'Responsable Sanitario LUDIMUG';
+            $reporte->nombre_autorizo =
+                'Q.F.B. Silvia Mariela González Rodríguez';
+            $reporte->cargo_autorizo = 'Responsable Sanitario LUDIMUG';
+            $reporte->folio = date ('Y').'LUDIMUG-' . rand(300, 99999);
+            $reporte->id = $request->id;
             $reporte->idDClinicos = $dclinicos->id;
             $reporte->idTratamiento = $tratamiento->id;
             $reporte->idAEpidemiologicos = $antepidemio->id;
@@ -224,7 +234,9 @@ class StudiesController extends Controller
 
             Db::commit();
 
-            return Redirect()->back()->with('success', 'El reporte se ha guardado correctamente');
+            return Redirect()
+                ->back()
+                ->with('success', 'El reporte se ha guardado correctamente');
 
             // foreach($request->sintoma as $row=>$value){
             //     echo var_dump($value[0][$index]);

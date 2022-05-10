@@ -12,13 +12,26 @@
                 <div class="modal-body">
                     <div class="col-md-12">
                         <label for="inputAddress2" class="form-label">Título para este archivo:</label>
-                        <input type="text" class="form-control" id="titulo" placeholder="Introduce el título del documento"
-                            required>
+                        @if (Auth::user()->role == 'admin')
+                            <input type="text" class="form-control" id="titulo"
+                                placeholder="Introduce el título del documento" required>
+                        @else
+                            <input type="text" class="form-control" id="titulo"
+                                placeholder="Introduce el título del documento" readonly required
+                                value="Listado de reportes de {{ Auth::user()->usuario }}">
+                        @endif
                     </div>
                     <div class="col-md-12 mt-3">
-                        <label for="inputAddress2" class="form-label">Parrafo descriptivo</label>
-                        <textarea maxlength="450" rows="6" type="text" class="form-control" id="parrafo"
-                            placeholder="Introduce el parrafo descriptivo del documento" required></textarea>
+                        @if (Auth::user()->role == 'admin')
+                            <label for="inputAddress2" class="form-label">Parrafo descriptivo</label>
+                            <textarea maxlength="450" rows="6" type="text" class="form-control" id="parrafo"
+                                placeholder="Introduce el parrafo descriptivo del documento" required></textarea>
+                        @else
+                            <label for="inputAddress2" class="form-label">Parrafo descriptivo</label>
+                            <textarea maxlength="450" rows="6" type="text" class="form-control" id="parrafo"
+                                readonly required
+                                value="Reporte generado {{ date('Y-m-d') }}"> Reporte generado {{ date('Y-m-d') }}</textarea>
+                        @endif
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -42,10 +55,12 @@
         <div class="tab-pane fade show active justify-content-center" id="pills-home" role="tabpanel"
             aria-labelledby="pills-home-tab">
 
+            @if($reportes)
             <a data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" class="btn btn-warning mb-3">Exportar a
                 Pdf
                 <i class="far fa-file-pdf"></i>
             </a>
+            @endif
 
             <table class="table table-responsive table-dark" id="reportTable">
                 <thead class="mt-3">
@@ -108,12 +123,13 @@
                             @endif
                             <td>
                                 <div class="row">
-                                    @if($report->idEvolucion)
-                                    <div class="col-md-4">
-                                        <a href="{{ route('download.show', $report->id) }}" class="btn btn-warning text-dark">
-                                            <i class="fas fa-file-pdf"></i>
-                                        </a>
-                                    </div>
+                                    @if ($report->idEvolucion)
+                                        <div class="col-md-4">
+                                            <a href="{{ route('download.show', $report->id) }}"
+                                                class="btn btn-warning text-dark">
+                                                <i class="fas fa-file-pdf"></i>
+                                            </a>
+                                        </div>
                                     @endif
                                 </div>
                             </td>

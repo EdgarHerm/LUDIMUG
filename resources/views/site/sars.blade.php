@@ -119,7 +119,7 @@
                                     </div>
                                     @if($report->idEvolucion)
                                     <div class="col-md-4">
-                                        <a href="" class="btn btn-success text-dark">
+                                        <a  href="{{ route('download.edit', $report->id) }}" class="btn btn-success text-dark">
                                             <i class="fas fa-file-excel"></i>
                                         </a>
                                     </div>
@@ -201,7 +201,7 @@
                                                     @forelse($vacunas as $row)
                                                         <tr>
                                                             <td>
-                                                                {{ $row->idVacuna }}
+                                                                {{ $row->id }}
                                                             </td>
                                                             <td>
                                                                 {{ $row->nombre }}
