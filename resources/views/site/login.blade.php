@@ -6,30 +6,34 @@
         @if (session()->has('error'))
         @endif
         <div class="col-md-6">
-            
-            
-            <div class="card">
-                
-                <img src="{{ asset('img/UG.jpg') }}" class="card-img-top" alt="...">
+
+
+            <div class="card border-success mb-3">
+
+                <img src="{{ asset('img/UG.jpg') }}" class="card-img-top" alt="Letras UG">
                 <div class="card-body">
                     <h3 class="card-title">Iniciar Sesión</h3>
 
                     {{ Form::open(['url' => '/login']) }}
                     <!-- Email input -->
-                    <div class="position-relative">
-                        <div class="toast bg-danger text-white fade position-absolute top-50 start-50 translate-middle" id="myToast">
-                            <div class="toast-header">
-                                <strong class="me-auto"><i class="bi-gift-fill"></i>Inicio de Sesión</strong>
-                                <small>Error</small>
-                                <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
-                            </div>
-                            <div class="toast-body">
-                                <a>
-                                    {{ session()->get('error') }}
-                                </a>
+
+                    @if (session()->has('message.level'))
+                        <div class="position-relative">
+                            <div class="toast bg-session()->has('message.level') text-white fade position-absolute top-50 start-50 translate-middle"
+                                id="myToast">
+                                <div class="toast-header">
+                                    <strong class="me-auto"><i class="bi-gift-fill"></i>Inicio de Sesión</strong>
+                                    <small>{{ session('message.level') }}</small>
+                                    <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+                                </div>
+                                <div class="toast-body">
+                                    <a>
+                                        {!! session('message.content') !!}
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
                     <div class="form-outline mb-4">
                         {{ Form::label('email', 'Correo electrónico', ['class' => 'form-label']) }}
                         {{ Form::email('email', Request::old('email'), ['class' => 'form-control', 'required' => true]) }}
@@ -49,7 +53,7 @@
                     </div>
                     {{ Form::close() }}
                 </div>
-                
+
             </div>
         </div>
         <div class="col-md-6">

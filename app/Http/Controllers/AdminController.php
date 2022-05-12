@@ -20,7 +20,7 @@ class AdminController extends Controller
     {
         if (Auth::user()->rol == 0) {
             $reportescons =
-                'SELECT * FROM reporte INNER JOIN persona ON persona.id = reporte.id INNER JOIN direccion ON persona.idDireccion = direccion.id';
+                'SELECT * FROM reporte INNER JOIN persona ON reporte.idPersona = persona.id INNER JOIN direccion ON persona.idDireccion = direccion.id';
             $reportes = Db::select($reportescons);
 
             // echo dd($reportes);
@@ -83,7 +83,7 @@ class AdminController extends Controller
     public function show($id)
     {
         $reportescons =
-            'SELECT * FROM reporte INNER JOIN persona ON persona.id = reporte.id  INNER JOIN users ON users.id = persona.id INNER JOIN direccion ON persona.idDireccion = direccion.id WHERE reporte.id =' .
+            'SELECT * FROM reporte INNER JOIN persona ON persona.id = reporte.idPersona  INNER JOIN users ON users.id = persona.idUsuario INNER JOIN direccion ON persona.idDireccion = direccion.id WHERE reporte.id =' .
             $id;
         $reportes = Db::select($reportescons);
 

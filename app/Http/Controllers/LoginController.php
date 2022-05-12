@@ -8,7 +8,7 @@ use Redirect;
 use App\Models\User;
 use App\Models\Persona;
 use Illuminate\Support\Facades\DB;
-
+use Session;
 
 class LoginController extends Controller
 {
@@ -49,7 +49,7 @@ class LoginController extends Controller
             if(Auth::user()->estatus=='1' && Auth::user()->rol=='1'){
                 $sqltoken = 'SELECT token FROM users WHERE id ='.Auth::user()->id;
                 $token = DB::select($sqltoken);
-                $sql = 'SELECT * FROM persona WHERE id ='.Auth::user()->id;
+                $sql = 'SELECT * FROM persona WHERE idUsuario ='.Auth::user()->id;
                 $user_profile = Db::select($sql);
                 if($token[0]->token != null){
                     return Redirect::to('/email_validation');
@@ -61,11 +61,15 @@ class LoginController extends Controller
                     }
                 }
             }else{
-                echo ('Ya no estás en el sistema');
+                Session::flash('message.level', 'error');
+                Session::flash('message.content', 'Usuario inactivo');
+                return Redirect()->route('login');
             }
             
         } else {
-            return Redirect()->route('login')->with('error', 'Usuario o contraseña incorrectos');
+            Session::flash('message.level', 'error');
+            Session::flash('message.content', 'Usuario o contraseña incorrectos');
+            return Redirect()->route('login');
         }
     }
 }

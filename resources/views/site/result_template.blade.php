@@ -1,8 +1,6 @@
-<h1>RESULTADO DE LABORATORIO</h1>
-
 <h3> Hola {{ $data }}</h3>
 
-<p>
+<p class="justify">
     Reciba un cordial saludo.
     <br>
     Por medio de la presente se le notifica que el informe de resultados de la prueba PCR Pool Testing ha sido completado, mismo que fue realizado en el LUDIMUG.  

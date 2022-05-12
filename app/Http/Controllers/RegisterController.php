@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Mail;
+use Session;
 
 class RegisterController extends Controller
 {
@@ -54,8 +55,7 @@ class RegisterController extends Controller
         ])->exists();
 
         if ($exists) {
-            return Redirect()->route('login')->withErrors(
-                ["password"=>"Ya Existe un usuario con el mismo correo."]);
+            return redirect('/register')->with('error', 'El usuario ya existe');
         }
         try {
             DB::beginTransaction();
@@ -73,24 +73,25 @@ class RegisterController extends Controller
             $User->rol =  1;
             $User->save();
 
-            DB::commit();
-
-            
-        } catch (\Throwable $th) {
-            DB::rollback();
-            return Redirect()->back()->withErrors(
-                ["password"=>"Ocurrio un error al registrar el usuario".$th]);
-        }
-        
-        
-        $temporal_token = Str::random(60);
+            $temporal_token = Str::random(60);
             $template_path = 'site.email_template';
             $correo = $request->email;
             Mail::send('site.email_template', ['data'=>$data], function($message) use ($correo) {
                 $message->to($correo, 'Receiver Name')->subject('Confirmar correo electrónico');
                 $message->from('ed.hermosillo@ugto.mx','Confirmacion de Registro');
             });
-        return Redirect::to('/');
+
+            DB::commit();
+
+            Session::flash('message.level', 'success');
+            Session::flash('message.content', 'Se ha enviado un correo electrónico para confirmar su registro');
+            return Redirect()->route('login');
+        } catch (\Throwable $th) {
+            DB::rollback();
+            Session::flash('message.level', 'error');
+            Session::flash('message.content', 'Ocurrió un error al registrar el usuario');
+            return Redirect()->back();
+        }
         //
     }
 

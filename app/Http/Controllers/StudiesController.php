@@ -208,6 +208,8 @@ class StudiesController extends Controller
             $antepidemio->idVacuna = $request->idVacuna;
 
             $antepidemio->save();
+            
+            
 
             $reporte = new Reporte();
             $reporte->unidad = 'LUDIMUG';
@@ -225,7 +227,7 @@ class StudiesController extends Controller
                 'Q.F.B. Silvia Mariela González Rodríguez';
             $reporte->cargo_autorizo = 'Responsable Sanitario LUDIMUG';
             $reporte->folio = date ('y'). date('M') . '-' .  rand(300, 99999);
-            $reporte->id = $request->id;
+            $reporte->idPersona = $id ;
             $reporte->idDClinicos = $dclinicos->id;
             $reporte->idTratamiento = $tratamiento->id;
             $reporte->idAEpidemiologicos = $antepidemio->id;

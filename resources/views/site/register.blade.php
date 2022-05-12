@@ -11,22 +11,42 @@
                     {{ Html::ul($errors->all()) }}
                     {{ Form::open(['url' => '/register']) }}
                     <!-- Email input -->
+
+
+                    @if (session('status'))
+                        <div class="position-relative">
+                            <div class="toast bg-danger text-white fade position-absolute top-50 start-50 translate-middle"
+                                id="myToast">
+                                <div class="toast-header">
+                                    <strong class="me-auto"><i class="bi-gift-fill"></i>Registro</strong>
+                                    <small>Error</small>
+                                    <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+                                </div>
+                                <div class="toast-body">
+                                    <a>
+                                        {{ session('status') }}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
                     <div class="form-outline mb-4">
                         {{ Form::label('email', 'Correo electrónico', ['class' => 'form-label']) }}
                         {{ Form::email('email', Request::old('email'), ['class' => 'form-control', 'required' => true]) }}
-                        
+
                     </div>
                     <!-- Password input -->
                     <div class="form-outline mb-4">
                         {{ Form::label('password', 'Contraseña', ['class' => 'form-label']) }}
                         {{ Form::password('password', ['class' => 'form-control full-width', 'required' => true]) }}
-                        
+
                     </div>
                     <div class="mb-3">
-                    Ya tienes una cuenta? <a href="{{ URL::to('/login') }}">Inicia sesión</a>
+                        Ya tienes una cuenta? <a href="{{ URL::to('/login') }}">Inicia sesión</a>
                     </div>
                     <div class="d-grid gap-2">
-                    {{ Form::submit('Registrarse', ['class' => 'btn btn-outline-success']) }}
+                        {{ Form::submit('Registrarse', ['class' => 'btn btn-outline-success']) }}
                     </div>
                     {{ Form::close() }}
                 </div>
